@@ -1,0 +1,252 @@
+﻿* 
+{
+    margin: 0;
+    padding: 0;
+}
+body
+{
+    font: small/1 "宋体",serif;
+    background: #fff;
+    color: #000;
+}
+img 
+{
+    border: 0;
+}li
+{
+    list-style: none outside;
+}
+a 
+{
+    text-decoration: none;
+}
+a:link
+{
+    color:#666;
+}
+a:visited
+{
+    color:#999;
+}
+a:hover
+{
+    color:#f90;
+    text-decoration:underline;
+}
+ul li
+{
+    display:inline;
+}
+#main /*居中显示*/
+{
+    margin: 40px auto;
+    clear:both;
+    position:relative;/*生成包含块*/
+}
+#header
+{
+    position:absolute;/*绝对定位到地图上方*/
+    left:0;
+    top:0px;
+    height:40px;
+    line-height:40px;
+    vertical-align:middle;
+    background:url(../Resource/backgroud1.jpg) repeat-x left center;/*注意这里的图片路径是相对于css文件的，而不是aspx文件*/
+    width:100%; /*设置宽度，要不然因为position的关系浮动时没有到达右边界，可以使用背景颜色标出来*/
+    visibility:hidden;/*不可见*/
+    z-index:100;/*使得不会变地图遮挡到*/
+}
+#header img
+{
+    vertical-align:middle;
+}
+#logo
+{
+    float:left;
+    height:40px;
+    overflow:hidden;
+}
+#logo a
+{
+    text-decoration:none;
+}
+#menu
+{
+    width: 220px;
+    height: 30px;
+    text-align:center;
+    line-height:30px;
+    overflow:hidden;
+}
+#menu li
+{
+    padding:0 1em;
+    border-right-style:dotted;
+    border-right-color:Orange;
+}
+#menu .right
+{
+    border-right-style:none;
+}
+#menu a:hover
+{
+    color:#f90;
+}
+#menu,#search
+{
+    position:static;
+    float:right;
+}
+.searchIcon
+{
+    text-align:center;
+    vertical-align:middle;
+}
+#map
+{
+    clear:both;
+}
+#footer 
+{
+    height: 40px;
+    line-height:40px;
+}
+#footer a:hover
+{
+    text-decoration:none;
+}
+#footer li
+{
+    margin: 0 4em;
+}
+#footer ul
+{
+    float:left;
+}
+
+#footer li
+{
+    position:relative;/*生成包含框*/
+    z-index:100;
+    float:left;
+    display:inline; /*注意在这里要设置为inline才能以行排列*/    
+}
+#footer ul ul
+{
+    width:80px;
+    border:1px solid #039;
+    padding:4px;   
+    background:url(../Resource/backgroud2.png) repeat-y;/*必须将背景设置放在这里，而不能放在div中*/
+}
+#footer ul ul li
+{
+    position:static;
+    border-top:1px dotted #cff;
+    padding:1px 0;
+    margin:0;
+    clear:both;/*清楚浮动，因为之前已经浮动，否则位置会出错*/
+    display:block;/*使得以列排列*/
+}
+#footer ul ul a
+{
+    line-height:18px;
+    padding:0 5px;
+}
+#footer ul ul a:hover
+{
+    background:#cff;
+    color:#039;
+    text-decoration:none;
+}
+#footer ul div
+{
+    position:absolute;/*确定二级菜单的位置*/
+    left:0px; /*绝对定位*/
+    bottom:40px;
+    width:80px;
+    visibility:hidden; 
+}
+#footer li:hover div
+{
+    visibility:visible;
+}
+#footer
+{
+    visibility:hidden;
+    position:absolute;
+    left:0;
+    bottom:0;
+    z-index:100;/*使得不会变地图遮挡到*/
+    width:100%;
+    background: #b6ceff;
+    background:url(../Resource/backgroud1.jpg) repeat-x left center;/*注意这里的图片路径是相对于css文件的，而不是aspx文件*/
+}
+#main:hover #header
+{
+    visibility:visible;
+}
+#main:hover #footer
+{
+    visibility:visible;
+}
+/*这个完全是摘来的，主要是用来弹出登录对话框*/
+.black_overlay 
+{
+    display: none; 
+    position: absolute; 
+    top: 0%; 
+    left: 0%; 
+    width: 100%; 
+    height: 100%; 
+    background-color: black; 
+    z-index:1001; 
+    -moz-opacity: 0.8; 
+    opacity:.60; 
+    filter: alpha(opacity=60);
+} 
+.white_content  
+{
+    display: none; 
+    position: absolute; 
+    top: 90px; 
+    left: 25%; 
+    width: 50%; 
+    height: 50%; 
+    padding: 16px; 
+    border: 16px solid orange;
+    background-color: white; 
+    z-index:1002; 
+    overflow: auto; 
+} 
+#managementTeam
+{
+    position:relative;
+    float:right;
+    height:40px;
+    line-height:40px;
+}
+#managementTeam ul
+{
+    position:absolute;/*确定二级菜单的位置*/
+    right:0px; /*绝对定位*/
+    bottom:40px;
+    width:80px;
+    visibility:hidden;
+    border:1px solid #039;
+    padding:4px;   
+    background:url(../Resource/backgroud2.png) repeat-y;/*必须将背景设置放在这里，而不能放在div中*/
+}
+#managementTeam:hover ul
+{
+    visibility:visible;
+}
+#managementTeam li
+{
+    position:static;
+    border-top:1px dotted #cff;
+    padding:1px 0;
+    margin:0;
+    clear:both;/*清楚浮动，因为之前已经浮动，否则位置会出错*/
+    display:block;/*使得以列排列*/
+}
+     

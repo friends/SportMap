@@ -1,0 +1,105 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="main.master.cs" Inherits="main" %>
+
+<%@ Register src="../UI/GoogleMapForASPNet.ascx" tagname="GoogleMapForASPNet" tagprefix="uc1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Sport Map</title>
+    <link href="../Styles/main.css" rel="stylesheet" type="text/css" />
+    <asp:contentplaceholder id="headContentPlaceHolder" runat="server">
+    </asp:contentplaceholder>
+</head>
+<body>
+    <form id = "form1" runat = "server">
+    <div id="light" class="white_content">
+        <%--在这里面添加登录对话框--%>
+        <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
+    </div> 
+    <div id="fade" class="black_overlay"></div> 
+    <div id = "main">
+        <div id = "header">
+        <div id = "logo">
+            <h1>
+                <a href="#">Sport Map</a>
+            </h1>
+        </div>
+        <div id = "menu">
+            <ul>
+                <li><a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">Login</a></li>
+                <li><a>SignUp</a></li>
+                <li class="right"><a>Help</a></li>
+            </ul>
+        </div>      
+        <div id = "search">  
+            <ul>
+                <li><asp:TextBox ID = "contentTextBox" runat = "server"></asp:TextBox></li>
+                <li>
+                    <asp:DropDownList ID = "typeDropDownList" runat = "server">
+                        <asp:ListItem Text = "athlete" Value="1"></asp:ListItem>
+                        <asp:ListItem Text = "badminton" Value="2"></asp:ListItem>
+                        <asp:ListItem Text = "football"></asp:ListItem>
+                        <asp:ListItem Text = "basketball"></asp:ListItem>
+                        <asp:ListItem Text = "country"></asp:ListItem>
+                    </asp:DropDownList>
+                </li>
+                <%--在这里使用asp.net的css类属性就能正确地实现垂直居中了--%>
+                <li><asp:ImageButton ImageUrl="~/Resource/search.jpg" ID = "searchImageButton" 
+                        runat = "server" CssClass="searchIcon" onclick="searchImageButton_Click" /></li>
+            </ul>                      
+        </div>
+    </div>
+    <div id = "map">
+      <uc1:GoogleMapForASPNet ID = "googleMapForASPNet" runat = "server" />
+      </div>      
+        <div id = "footer">
+        <ul id="option">
+            <li><a>Game Theme</a>
+                <div>
+                    <ul>
+                        <li><asp:LinkButton ID="footballLinkBtn" runat="server" 
+                                onclick="footballLinkBtn_Click">football</asp:LinkButton></li>
+                        <li><asp:LinkButton ID="basketballLinkBtn" runat="server" 
+                                onclick="basketballLinkBtn_Click">basketball</asp:LinkButton></li>
+                        <li><asp:LinkButton ID="badmintonLinkBtn" runat="server" 
+                                onclick="badmintonLinkBtn_Click">badminton</asp:LinkButton></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a>Type</a>
+            <div>
+                <ul>
+                    <li><asp:LinkButton ID="videoLinkBtn" runat="server" onclick="videoLinkBtn_Click">video</asp:LinkButton></li>
+                    <li><asp:LinkButton ID="textLinkBtn" runat="server" onclick="textLinkBtn_Click">text</asp:LinkButton></li>
+                    <li><asp:LinkButton ID="pictureLinkBtn" runat="server" 
+                            onclick="pictureLinkBtn_Click">picture</asp:LinkButton></li>
+                </ul>
+                </div>
+            </li>
+            <li><a>Funciton</a>
+            <div>
+                <ul>
+                    <li><asp:LinkButton ID="betLinkBtn" runat="server" onclick="betLinkBtn_Click">bet</asp:LinkButton></li>
+                    <li><asp:LinkButton ID="salesLinkBtn" runat="server" onclick="salesLinkBtn_Click">sales</asp:LinkButton></li>                   
+                    <li><asp:LinkButton ID="othersLinkBtn" runat="server" onclick="othersLinkBtn_Click">others</asp:LinkButton></li>
+                </ul>
+                </div>
+            </li>        
+        </ul>
+        <div id ="managementTeam"><h2 id = "teamName"><a>&copy;friends</a></h2>
+                    <ul>
+                        <li><a href ="mailto:xxj050@163.com">xxj</a></li>
+                        <li><a href="">Li Tao</a></li>
+                        <li><a href="">Yang HaiChuan</a></li>
+                        <li><a href="">Su Ping</a></li>
+                        <li><a href="">Chen bing</a></li>
+                    </ul>
+        </div>
+    </div>
+    
+    </div>
+
+    </form>
+</body>
+</html>
