@@ -37,24 +37,24 @@ ul li
 {
     display:inline;
 }
-#main /*居中显示*/
+#main 
 {
     margin: 40px auto;
     clear:both;
-    position:relative;/*生成包含块*/
+    position:relative;
 }
 #header
 {
-    position:absolute;/*绝对定位到地图上方*/
+    position:absolute;
     left:0;
     top:0px;
     height:40px;
     line-height:40px;
     vertical-align:middle;
-    background:url(../Resource/backgroud1.jpg) repeat-x left center;/*注意这里的图片路径是相对于css文件的，而不是aspx文件*/
-    width:100%; /*设置宽度，要不然因为position的关系浮动时没有到达右边界，可以使用背景颜色标出来*/
-    visibility:hidden;/*不可见*/
-    z-index:100;/*使得不会变地图遮挡到*/
+    background:url(../Resource/backgroud1.jpg) repeat-x left center;
+    width:100%; 
+    visibility:hidden;
+    z-index:100;
 }
 #header img
 {
@@ -126,17 +126,17 @@ ul li
 
 #footer li
 {
-    position:relative;/*生成包含框*/
+    position:relative;
     z-index:100;
     float:left;
-    display:inline; /*注意在这里要设置为inline才能以行排列*/    
+    display:inline;     
 }
 #footer ul ul
 {
     width:80px;
     border:1px solid #039;
     padding:4px;   
-    background:url(../Resource/backgroud2.png) repeat-y;/*必须将背景设置放在这里，而不能放在div中*/
+    background:url(../Resource/backgroud2.png) repeat-y;
 }
 #footer ul ul li
 {
@@ -144,8 +144,8 @@ ul li
     border-top:1px dotted #cff;
     padding:1px 0;
     margin:0;
-    clear:both;/*清楚浮动，因为之前已经浮动，否则位置会出错*/
-    display:block;/*使得以列排列*/
+    clear:both;
+    display:block;
 }
 #footer ul ul a
 {
@@ -160,8 +160,8 @@ ul li
 }
 #footer ul div
 {
-    position:absolute;/*确定二级菜单的位置*/
-    left:0px; /*绝对定位*/
+    position:absolute;
+    left:0px;
     bottom:40px;
     width:80px;
     visibility:hidden; 
@@ -176,10 +176,10 @@ ul li
     position:absolute;
     left:0;
     bottom:0;
-    z-index:100;/*使得不会变地图遮挡到*/
+    z-index:100;
     width:100%;
     background: #b6ceff;
-    background:url(../Resource/backgroud1.jpg) repeat-x left center;/*注意这里的图片路径是相对于css文件的，而不是aspx文件*/
+    background:url(../Resource/backgroud1.jpg) repeat-x left center;
 }
 #main:hover #header
 {
@@ -189,7 +189,7 @@ ul li
 {
     visibility:visible;
 }
-/*这个完全是摘来的，主要是用来弹出登录对话框*/
+
 .black_overlay 
 {
     display: none; 
@@ -227,14 +227,14 @@ ul li
 }
 #managementTeam ul
 {
-    position:absolute;/*确定二级菜单的位置*/
-    right:0px; /*绝对定位*/
+    position:absolute;
+    right:0px; 
     bottom:40px;
     width:80px;
     visibility:hidden;
     border:1px solid #039;
     padding:4px;   
-    background:url(../Resource/backgroud2.png) repeat-y;/*必须将背景设置放在这里，而不能放在div中*/
+    background:url(../Resource/backgroud2.png) repeat-y;
 }
 #managementTeam:hover ul
 {
@@ -246,7 +246,7 @@ ul li
     border-top:1px dotted #cff;
     padding:1px 0;
     margin:0;
-    clear:both;/*清楚浮动，因为之前已经浮动，否则位置会出错*/
-    display:block;/*使得以列排列*/
+    clear:both;
+    display:block;
 }
      
