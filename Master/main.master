@@ -15,6 +15,7 @@
     <form id = "form1" runat = "server">
     <div id="light" class="white_content">
         <%--在这里面添加登录对话框--%>
+
         <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
     </div> 
     <div id="fade" class="black_overlay"></div> 

@@ -1,2 +1,4 @@
 在本地建立一个名为challenge的db，然后运行上面的脚本就可以了，数据库
 就创建成功了
+
+xxj：看到真实的表之后觉得有些问题，改了一下；而且challenge作为数据库名不妥吧。所以改在SportMapDB了，在本地建立一个名为SportMapDB的数据库，然后运行脚本sportmap.sql就可以了
