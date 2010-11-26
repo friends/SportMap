@@ -30,7 +30,7 @@ public partial class main : System.Web.UI.MasterPage
     }
     protected void searchImageButton_Click(object sender, ImageClickEventArgs e)
     {
-
+       
     }
     protected void footballLinkBtn_Click(object sender, EventArgs e)
     {

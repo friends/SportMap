@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SportMap" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=xxj-PC;Initial Catalog=SportMap;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SportMapConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.gameInfo" Member="gameInfo">
+    <Type Name="gameInfo">
+      <Column Name="gameId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="gameType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LocationId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="gameNameA" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="gameNameB" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="gameTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="gamestatus" Type="System.Decimal" DbType="Decimal(1,0) NOT NULL" CanBeNull="false" />
+      <Column Name="gameLength" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="gameResult" Type="System.Decimal" DbType="Decimal(1,0) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.gameNews" Member="gameNews">
+    <Type Name="gameNews">
+      <Column Name="gameNewsId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="userId" Type="System.Decimal" DbType="Decimal(8,0) NOT NULL" CanBeNull="false" />
+      <Column Name="LocationId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="gameNewsTitle" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="gameNewsKeyWords" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="gameNewsContent" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="gameNewsAuthor" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="gameNewsHitTimes" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="gameNewsCreatedTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="gameNewsEditTimes" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="gameNewsPriority" Type="System.Decimal" DbType="Decimal(1,0) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

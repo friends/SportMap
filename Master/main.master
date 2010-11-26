@@ -12,13 +12,7 @@
     </asp:contentplaceholder>
 </head>
 <body>
-    <form id = "form1" runat = "server">
-    <div id="light" class="white_content">
-        <%--在这里面添加登录对话框--%>
-
-        <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
-    </div> 
-    <div id="fade" class="black_overlay"></div> 
+    <form id = "form1" runat = "server"> 
     <div id = "main">
         <div id = "header">
         <div id = "logo">
@@ -28,8 +22,8 @@
         </div>
         <div id = "menu">
             <ul>
-                <li><a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">Login</a></li>
-                <li><a>SignUp</a></li>
+                <li><asp:HyperLink Target="_blank" NavigateUrl="~/UI/Login.aspx" runat="server">Login</asp:HyperLink></li>
+                <li><asp:HyperLInk Target="_blank" NavigateUrl="~/UI/Register.aspx" runat="server">SignUp</asp:HyperLInk></li>
                 <li class="right"><a>Help</a></li>
             </ul>
         </div>      
