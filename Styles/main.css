@@ -1,0 +1,223 @@
+﻿* 
+{
+    margin: 0;
+    padding: 0;
+}
+body
+{
+    font: small/1 "宋体",serif;
+    background:url(../Resource/bg.png) repeat-x scroll top;
+    color: #000;
+}
+img 
+{
+    border: 0;
+}li
+{
+    list-style: none outside;
+}
+a 
+{
+    text-decoration: none;
+}
+a:link
+{
+    color:#666;
+}
+a:visited
+{
+    color:#999;
+}
+a:hover
+{
+    color:#f90;
+    text-decoration:underline;
+}
+ul li
+{
+    display:inline;
+}
+#main 
+{
+    margin: 40px auto;
+    clear:both;
+    position:relative;
+}
+#header
+{
+    position:absolute;
+    left:0;
+    top:0px;
+    height:40px;
+    line-height:40px;
+    vertical-align:middle;
+    background:url(../Resource/backgroud1.jpg) repeat-x left center;
+    width:100%; 
+    visibility:hidden;
+    z-index:100;
+}
+#header img
+{
+    vertical-align:middle;
+}
+#logo
+{
+    float:left;
+    height:40px;
+    overflow:hidden;
+}
+#logo a
+{
+    text-decoration:none;
+}
+#menu
+{
+    width: 220px;
+    height: 30px;
+    text-align:center;
+    line-height:30px;
+    overflow:hidden;
+}
+#menu li
+{
+    padding:0 1em;
+    border-right-style:dotted;
+    border-right-color:Orange;
+}
+#menu .right
+{
+    border-right-style:none;
+}
+#menu a:hover
+{
+    color:#f90;
+}
+#menu,#search
+{
+    position:static;
+    float:right;
+}
+.searchIcon
+{
+    text-align:center;
+    vertical-align:middle;
+}
+#map
+{
+    clear:both;
+}
+#footer 
+{
+    height: 40px;
+    line-height:40px;
+}
+#footer a:hover
+{
+    text-decoration:none;
+}
+#footer li
+{
+    margin: 0 4em;
+}
+#footer ul
+{
+    float:left;
+}
+
+#footer li
+{
+    position:relative;
+    z-index:100;
+    float:left;
+    display:inline;     
+}
+#footer ul ul
+{
+    width:80px;
+    border:1px solid #039;
+    padding:4px;   
+    background:url(../Resource/backgroud2.png) repeat-y;
+}
+#footer ul ul li
+{
+    position:static;
+    border-top:1px dotted #cff;
+    padding:1px 0;
+    margin:0;
+    clear:both;
+    display:block;
+}
+#footer ul ul a
+{
+    line-height:18px;
+    padding:0 5px;
+}
+#footer ul ul a:hover
+{
+    background:#cff;
+    color:#039;
+    text-decoration:none;
+}
+#footer ul div
+{
+    position:absolute;
+    left:0px;
+    bottom:40px;
+    width:80px;
+    visibility:hidden; 
+}
+#footer li:hover div
+{
+    visibility:visible;
+}
+#footer
+{
+    visibility:hidden;
+    position:absolute;
+    left:0;
+    bottom:0;
+    z-index:100;
+    width:100%;
+    background: #b6ceff;
+    background:url(../Resource/backgroud1.jpg) repeat-x left center;
+}
+#main:hover #header
+{
+    visibility:visible;
+}
+#main:hover #footer
+{
+    visibility:visible;
+}
+#managementTeam
+{
+    position:relative;
+    float:right;
+    height:40px;
+    line-height:40px;
+}
+#managementTeam ul
+{
+    position:absolute;
+    right:0px; 
+    bottom:40px;
+    width:80px;
+    visibility:hidden;
+    border:1px solid #039;
+    padding:4px;   
+    background:url(../Resource/backgroud2.png) repeat-y;
+}
+#managementTeam:hover ul
+{
+    visibility:visible;
+}
+#managementTeam li
+{
+    position:static;
+    border-top:1px dotted #cff;
+    padding:1px 0;
+    margin:0;
+    clear:both;
+    display:block;
+}
+     
