@@ -19,7 +19,7 @@ namespace SportMap.DAL
             currentUser = null;
         }
         //接口IHandler的实现
-        ErrorMessage Insert(user u)
+        public ErrorMessage Insert(user u)
         {
             if (SetCurrentUserById(u.userId) == ErrorMessage.NOT_EXIST)
             {
@@ -31,7 +31,7 @@ namespace SportMap.DAL
             else
                 return ErrorMessage.ALREADY_EXIST;
         }
-        ErrorMessage Delete()
+        public ErrorMessage Delete()
         {
             if (currentUser == null)
                 return ErrorMessage.NOT_EXIST;
@@ -43,7 +43,7 @@ namespace SportMap.DAL
                 return ErrorMessage.OK;
             }
         }
-        ErrorMessage Submit()
+        public ErrorMessage Submit()
         {
             db.SubmitChanges();
             return ErrorMessage.OK;
@@ -371,6 +371,38 @@ namespace SportMap.DAL
             {
                 if (currentUser != null)
                     currentUser.lastLoginOutTime = value;
+            }
+        }
+
+        public double currentUserLongitude
+        {
+            get
+            {
+                if (currentUser == null)
+                    return 0;
+                else
+                    return currentUser.userLongitude;
+            }
+            set
+            {
+                if (currentUser != null)
+                    currentUser.userLongitude = value;
+            }
+        }
+
+        public double currentUserLatitude
+        {
+            get
+            {
+                if (currentUser == null)
+                    return 0;
+                else
+                    return currentUser.userLatitude;
+            }
+            set
+            {
+                if (currentUser != null)
+                    currentUser.userLatitude = value;
             }
         }
 

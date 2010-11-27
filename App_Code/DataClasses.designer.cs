@@ -21,7 +21,7 @@ using System.Reflection;
 
 
 
-[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="SportMap")]
+[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="SportMapDB")]
 public partial class DataClassesDataContext : System.Data.Linq.DataContext
 {
 	
@@ -29,16 +29,13 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 	
   #region 可扩展性方法定义
   partial void OnCreated();
-  partial void InsertgameInfo(gameInfo instance);
-  partial void UpdategameInfo(gameInfo instance);
-  partial void DeletegameInfo(gameInfo instance);
-  partial void InsertgameNews(gameNews instance);
-  partial void UpdategameNews(gameNews instance);
-  partial void DeletegameNews(gameNews instance);
+  partial void Insertuser(user instance);
+  partial void Updateuser(user instance);
+  partial void Deleteuser(user instance);
   #endregion
 	
 	public DataClassesDataContext() : 
-			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SportMapConnectionString"].ConnectionString, mappingSource)
+			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SportMapDBConnectionString"].ConnectionString, mappingSource)
 	{
 		OnCreated();
 	}
@@ -67,360 +64,118 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		OnCreated();
 	}
 	
-	public System.Data.Linq.Table<gameInfo> gameInfo
+	public System.Data.Linq.Table<user> user
 	{
 		get
 		{
-			return this.GetTable<gameInfo>();
-		}
-	}
-	
-	public System.Data.Linq.Table<gameNews> gameNews
-	{
-		get
-		{
-			return this.GetTable<gameNews>();
+			return this.GetTable<user>();
 		}
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.gameInfo")]
-public partial class gameInfo : INotifyPropertyChanging, INotifyPropertyChanged
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[user]")]
+public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
 	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 	
-	private int _gameId;
+	private string _userId;
 	
-	private int _gameType;
+	private System.Nullable<int> _pictureId;
 	
-	private int _LocationId;
+	private string _userName;
 	
-	private string _gameNameA;
+	private string _userPwd;
 	
-	private string _gameNameB;
+	private decimal _userType;
 	
-	private System.DateTime _gameTime;
+	private string _pwdProtectA;
 	
-	private decimal _gamestatus;
+	private string _pwdProtectQ;
 	
-	private int _gameLength;
+	private System.Nullable<bool> _userSex;
 	
-	private decimal _gameResult;
+	private string _userLocation;
+	
+	private System.Nullable<System.DateTime> _userBirthday;
+	
+	private string _userConnectMsn;
+	
+	private System.Nullable<decimal> _userConnectqq;
+	
+	private string _userConnectAdd;
+	
+	private string _userPrefer;
+	
+	private int _userLoginTimes;
+	
+	private System.Nullable<decimal> _userConnectPhone;
+	
+	private string _userSign;
+	
+	private string _userConnectEmail;
+	
+	private System.DateTime _lastLoginOutTime;
+	
+	private double _userLatitude;
+	
+	private double _userLongitude;
 	
     #region 可扩展性方法定义
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OngameIdChanging(int value);
-    partial void OngameIdChanged();
-    partial void OngameTypeChanging(int value);
-    partial void OngameTypeChanged();
-    partial void OnLocationIdChanging(int value);
-    partial void OnLocationIdChanged();
-    partial void OngameNameAChanging(string value);
-    partial void OngameNameAChanged();
-    partial void OngameNameBChanging(string value);
-    partial void OngameNameBChanged();
-    partial void OngameTimeChanging(System.DateTime value);
-    partial void OngameTimeChanged();
-    partial void OngamestatusChanging(decimal value);
-    partial void OngamestatusChanged();
-    partial void OngameLengthChanging(int value);
-    partial void OngameLengthChanged();
-    partial void OngameResultChanging(decimal value);
-    partial void OngameResultChanged();
-    #endregion
-	
-	public gameInfo()
-	{
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameId", DbType="Int NOT NULL", IsPrimaryKey=true)]
-	public int gameId
-	{
-		get
-		{
-			return this._gameId;
-		}
-		set
-		{
-			if ((this._gameId != value))
-			{
-				this.OngameIdChanging(value);
-				this.SendPropertyChanging();
-				this._gameId = value;
-				this.SendPropertyChanged("gameId");
-				this.OngameIdChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameType", DbType="Int NOT NULL")]
-	public int gameType
-	{
-		get
-		{
-			return this._gameType;
-		}
-		set
-		{
-			if ((this._gameType != value))
-			{
-				this.OngameTypeChanging(value);
-				this.SendPropertyChanging();
-				this._gameType = value;
-				this.SendPropertyChanged("gameType");
-				this.OngameTypeChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocationId", DbType="Int NOT NULL")]
-	public int LocationId
-	{
-		get
-		{
-			return this._LocationId;
-		}
-		set
-		{
-			if ((this._LocationId != value))
-			{
-				this.OnLocationIdChanging(value);
-				this.SendPropertyChanging();
-				this._LocationId = value;
-				this.SendPropertyChanged("LocationId");
-				this.OnLocationIdChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNameA", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string gameNameA
-	{
-		get
-		{
-			return this._gameNameA;
-		}
-		set
-		{
-			if ((this._gameNameA != value))
-			{
-				this.OngameNameAChanging(value);
-				this.SendPropertyChanging();
-				this._gameNameA = value;
-				this.SendPropertyChanged("gameNameA");
-				this.OngameNameAChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNameB", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string gameNameB
-	{
-		get
-		{
-			return this._gameNameB;
-		}
-		set
-		{
-			if ((this._gameNameB != value))
-			{
-				this.OngameNameBChanging(value);
-				this.SendPropertyChanging();
-				this._gameNameB = value;
-				this.SendPropertyChanged("gameNameB");
-				this.OngameNameBChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameTime", DbType="DateTime NOT NULL")]
-	public System.DateTime gameTime
-	{
-		get
-		{
-			return this._gameTime;
-		}
-		set
-		{
-			if ((this._gameTime != value))
-			{
-				this.OngameTimeChanging(value);
-				this.SendPropertyChanging();
-				this._gameTime = value;
-				this.SendPropertyChanged("gameTime");
-				this.OngameTimeChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gamestatus", DbType="Decimal(1,0) NOT NULL")]
-	public decimal gamestatus
-	{
-		get
-		{
-			return this._gamestatus;
-		}
-		set
-		{
-			if ((this._gamestatus != value))
-			{
-				this.OngamestatusChanging(value);
-				this.SendPropertyChanging();
-				this._gamestatus = value;
-				this.SendPropertyChanged("gamestatus");
-				this.OngamestatusChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameLength", DbType="Int NOT NULL")]
-	public int gameLength
-	{
-		get
-		{
-			return this._gameLength;
-		}
-		set
-		{
-			if ((this._gameLength != value))
-			{
-				this.OngameLengthChanging(value);
-				this.SendPropertyChanging();
-				this._gameLength = value;
-				this.SendPropertyChanged("gameLength");
-				this.OngameLengthChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameResult", DbType="Decimal(1,0) NOT NULL")]
-	public decimal gameResult
-	{
-		get
-		{
-			return this._gameResult;
-		}
-		set
-		{
-			if ((this._gameResult != value))
-			{
-				this.OngameResultChanging(value);
-				this.SendPropertyChanging();
-				this._gameResult = value;
-				this.SendPropertyChanged("gameResult");
-				this.OngameResultChanged();
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.gameNews")]
-public partial class gameNews : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _gameNewsId;
-	
-	private decimal _userId;
-	
-	private int _LocationId;
-	
-	private string _gameNewsTitle;
-	
-	private string _gameNewsKeyWords;
-	
-	private string _gameNewsContent;
-	
-	private string _gameNewsAuthor;
-	
-	private int _gameNewsHitTimes;
-	
-	private System.DateTime _gameNewsCreatedTime;
-	
-	private int _gameNewsEditTimes;
-	
-	private decimal _gameNewsPriority;
-	
-    #region 可扩展性方法定义
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OngameNewsIdChanging(int value);
-    partial void OngameNewsIdChanged();
-    partial void OnuserIdChanging(decimal value);
+    partial void OnuserIdChanging(string value);
     partial void OnuserIdChanged();
-    partial void OnLocationIdChanging(int value);
-    partial void OnLocationIdChanged();
-    partial void OngameNewsTitleChanging(string value);
-    partial void OngameNewsTitleChanged();
-    partial void OngameNewsKeyWordsChanging(string value);
-    partial void OngameNewsKeyWordsChanged();
-    partial void OngameNewsContentChanging(string value);
-    partial void OngameNewsContentChanged();
-    partial void OngameNewsAuthorChanging(string value);
-    partial void OngameNewsAuthorChanged();
-    partial void OngameNewsHitTimesChanging(int value);
-    partial void OngameNewsHitTimesChanged();
-    partial void OngameNewsCreatedTimeChanging(System.DateTime value);
-    partial void OngameNewsCreatedTimeChanged();
-    partial void OngameNewsEditTimesChanging(int value);
-    partial void OngameNewsEditTimesChanged();
-    partial void OngameNewsPriorityChanging(decimal value);
-    partial void OngameNewsPriorityChanged();
+    partial void OnpictureIdChanging(System.Nullable<int> value);
+    partial void OnpictureIdChanged();
+    partial void OnuserNameChanging(string value);
+    partial void OnuserNameChanged();
+    partial void OnuserPwdChanging(string value);
+    partial void OnuserPwdChanged();
+    partial void OnuserTypeChanging(decimal value);
+    partial void OnuserTypeChanged();
+    partial void OnpwdProtectAChanging(string value);
+    partial void OnpwdProtectAChanged();
+    partial void OnpwdProtectQChanging(string value);
+    partial void OnpwdProtectQChanged();
+    partial void OnuserSexChanging(System.Nullable<bool> value);
+    partial void OnuserSexChanged();
+    partial void OnuserLocationChanging(string value);
+    partial void OnuserLocationChanged();
+    partial void OnuserBirthdayChanging(System.Nullable<System.DateTime> value);
+    partial void OnuserBirthdayChanged();
+    partial void OnuserConnectMsnChanging(string value);
+    partial void OnuserConnectMsnChanged();
+    partial void OnuserConnectqqChanging(System.Nullable<decimal> value);
+    partial void OnuserConnectqqChanged();
+    partial void OnuserConnectAddChanging(string value);
+    partial void OnuserConnectAddChanged();
+    partial void OnuserPreferChanging(string value);
+    partial void OnuserPreferChanged();
+    partial void OnuserLoginTimesChanging(int value);
+    partial void OnuserLoginTimesChanged();
+    partial void OnuserConnectPhoneChanging(System.Nullable<decimal> value);
+    partial void OnuserConnectPhoneChanged();
+    partial void OnuserSignChanging(string value);
+    partial void OnuserSignChanged();
+    partial void OnuserConnectEmailChanging(string value);
+    partial void OnuserConnectEmailChanged();
+    partial void OnlastLoginOutTimeChanging(System.DateTime value);
+    partial void OnlastLoginOutTimeChanged();
+    partial void OnuserLatitudeChanging(double value);
+    partial void OnuserLatitudeChanged();
+    partial void OnuserLongitudeChanging(double value);
+    partial void OnuserLongitudeChanged();
     #endregion
 	
-	public gameNews()
+	public user()
 	{
 		OnCreated();
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsId", DbType="Int NOT NULL", IsPrimaryKey=true)]
-	public int gameNewsId
-	{
-		get
-		{
-			return this._gameNewsId;
-		}
-		set
-		{
-			if ((this._gameNewsId != value))
-			{
-				this.OngameNewsIdChanging(value);
-				this.SendPropertyChanging();
-				this._gameNewsId = value;
-				this.SendPropertyChanged("gameNewsId");
-				this.OngameNewsIdChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userId", DbType="Decimal(8,0) NOT NULL")]
-	public decimal userId
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userId", DbType="VarChar(16) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+	public string userId
 	{
 		get
 		{
@@ -439,182 +194,402 @@ public partial class gameNews : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocationId", DbType="Int NOT NULL")]
-	public int LocationId
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pictureId", DbType="Int")]
+	public System.Nullable<int> pictureId
 	{
 		get
 		{
-			return this._LocationId;
+			return this._pictureId;
 		}
 		set
 		{
-			if ((this._LocationId != value))
+			if ((this._pictureId != value))
 			{
-				this.OnLocationIdChanging(value);
+				this.OnpictureIdChanging(value);
 				this.SendPropertyChanging();
-				this._LocationId = value;
-				this.SendPropertyChanged("LocationId");
-				this.OnLocationIdChanged();
+				this._pictureId = value;
+				this.SendPropertyChanged("pictureId");
+				this.OnpictureIdChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsTitle", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-	public string gameNewsTitle
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userName", DbType="VarChar(16)")]
+	public string userName
 	{
 		get
 		{
-			return this._gameNewsTitle;
+			return this._userName;
 		}
 		set
 		{
-			if ((this._gameNewsTitle != value))
+			if ((this._userName != value))
 			{
-				this.OngameNewsTitleChanging(value);
+				this.OnuserNameChanging(value);
 				this.SendPropertyChanging();
-				this._gameNewsTitle = value;
-				this.SendPropertyChanged("gameNewsTitle");
-				this.OngameNewsTitleChanged();
+				this._userName = value;
+				this.SendPropertyChanged("userName");
+				this.OnuserNameChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsKeyWords", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-	public string gameNewsKeyWords
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userPwd", DbType="VarChar(16) NOT NULL", CanBeNull=false)]
+	public string userPwd
 	{
 		get
 		{
-			return this._gameNewsKeyWords;
+			return this._userPwd;
 		}
 		set
 		{
-			if ((this._gameNewsKeyWords != value))
+			if ((this._userPwd != value))
 			{
-				this.OngameNewsKeyWordsChanging(value);
+				this.OnuserPwdChanging(value);
 				this.SendPropertyChanging();
-				this._gameNewsKeyWords = value;
-				this.SendPropertyChanged("gameNewsKeyWords");
-				this.OngameNewsKeyWordsChanged();
+				this._userPwd = value;
+				this.SendPropertyChanged("userPwd");
+				this.OnuserPwdChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsContent", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-	public string gameNewsContent
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userType", DbType="Decimal(1,0) NOT NULL")]
+	public decimal userType
 	{
 		get
 		{
-			return this._gameNewsContent;
+			return this._userType;
 		}
 		set
 		{
-			if ((this._gameNewsContent != value))
+			if ((this._userType != value))
 			{
-				this.OngameNewsContentChanging(value);
+				this.OnuserTypeChanging(value);
 				this.SendPropertyChanging();
-				this._gameNewsContent = value;
-				this.SendPropertyChanged("gameNewsContent");
-				this.OngameNewsContentChanged();
+				this._userType = value;
+				this.SendPropertyChanged("userType");
+				this.OnuserTypeChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsAuthor", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-	public string gameNewsAuthor
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pwdProtectA", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+	public string pwdProtectA
 	{
 		get
 		{
-			return this._gameNewsAuthor;
+			return this._pwdProtectA;
 		}
 		set
 		{
-			if ((this._gameNewsAuthor != value))
+			if ((this._pwdProtectA != value))
 			{
-				this.OngameNewsAuthorChanging(value);
+				this.OnpwdProtectAChanging(value);
 				this.SendPropertyChanging();
-				this._gameNewsAuthor = value;
-				this.SendPropertyChanged("gameNewsAuthor");
-				this.OngameNewsAuthorChanged();
+				this._pwdProtectA = value;
+				this.SendPropertyChanged("pwdProtectA");
+				this.OnpwdProtectAChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsHitTimes", DbType="Int NOT NULL")]
-	public int gameNewsHitTimes
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pwdProtectQ", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+	public string pwdProtectQ
 	{
 		get
 		{
-			return this._gameNewsHitTimes;
+			return this._pwdProtectQ;
 		}
 		set
 		{
-			if ((this._gameNewsHitTimes != value))
+			if ((this._pwdProtectQ != value))
 			{
-				this.OngameNewsHitTimesChanging(value);
+				this.OnpwdProtectQChanging(value);
 				this.SendPropertyChanging();
-				this._gameNewsHitTimes = value;
-				this.SendPropertyChanged("gameNewsHitTimes");
-				this.OngameNewsHitTimesChanged();
+				this._pwdProtectQ = value;
+				this.SendPropertyChanged("pwdProtectQ");
+				this.OnpwdProtectQChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsCreatedTime", DbType="DateTime NOT NULL")]
-	public System.DateTime gameNewsCreatedTime
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userSex", DbType="Bit")]
+	public System.Nullable<bool> userSex
 	{
 		get
 		{
-			return this._gameNewsCreatedTime;
+			return this._userSex;
 		}
 		set
 		{
-			if ((this._gameNewsCreatedTime != value))
+			if ((this._userSex != value))
 			{
-				this.OngameNewsCreatedTimeChanging(value);
+				this.OnuserSexChanging(value);
 				this.SendPropertyChanging();
-				this._gameNewsCreatedTime = value;
-				this.SendPropertyChanged("gameNewsCreatedTime");
-				this.OngameNewsCreatedTimeChanged();
+				this._userSex = value;
+				this.SendPropertyChanged("userSex");
+				this.OnuserSexChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsEditTimes", DbType="Int NOT NULL")]
-	public int gameNewsEditTimes
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userLocation", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+	public string userLocation
 	{
 		get
 		{
-			return this._gameNewsEditTimes;
+			return this._userLocation;
 		}
 		set
 		{
-			if ((this._gameNewsEditTimes != value))
+			if ((this._userLocation != value))
 			{
-				this.OngameNewsEditTimesChanging(value);
+				this.OnuserLocationChanging(value);
 				this.SendPropertyChanging();
-				this._gameNewsEditTimes = value;
-				this.SendPropertyChanged("gameNewsEditTimes");
-				this.OngameNewsEditTimesChanged();
+				this._userLocation = value;
+				this.SendPropertyChanged("userLocation");
+				this.OnuserLocationChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsPriority", DbType="Decimal(1,0) NOT NULL")]
-	public decimal gameNewsPriority
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userBirthday", DbType="DateTime")]
+	public System.Nullable<System.DateTime> userBirthday
 	{
 		get
 		{
-			return this._gameNewsPriority;
+			return this._userBirthday;
 		}
 		set
 		{
-			if ((this._gameNewsPriority != value))
+			if ((this._userBirthday != value))
 			{
-				this.OngameNewsPriorityChanging(value);
+				this.OnuserBirthdayChanging(value);
 				this.SendPropertyChanging();
-				this._gameNewsPriority = value;
-				this.SendPropertyChanged("gameNewsPriority");
-				this.OngameNewsPriorityChanged();
+				this._userBirthday = value;
+				this.SendPropertyChanged("userBirthday");
+				this.OnuserBirthdayChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userConnectMsn", DbType="VarChar(255)")]
+	public string userConnectMsn
+	{
+		get
+		{
+			return this._userConnectMsn;
+		}
+		set
+		{
+			if ((this._userConnectMsn != value))
+			{
+				this.OnuserConnectMsnChanging(value);
+				this.SendPropertyChanging();
+				this._userConnectMsn = value;
+				this.SendPropertyChanged("userConnectMsn");
+				this.OnuserConnectMsnChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userConnectqq", DbType="Decimal(12,0)")]
+	public System.Nullable<decimal> userConnectqq
+	{
+		get
+		{
+			return this._userConnectqq;
+		}
+		set
+		{
+			if ((this._userConnectqq != value))
+			{
+				this.OnuserConnectqqChanging(value);
+				this.SendPropertyChanging();
+				this._userConnectqq = value;
+				this.SendPropertyChanged("userConnectqq");
+				this.OnuserConnectqqChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userConnectAdd", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+	public string userConnectAdd
+	{
+		get
+		{
+			return this._userConnectAdd;
+		}
+		set
+		{
+			if ((this._userConnectAdd != value))
+			{
+				this.OnuserConnectAddChanging(value);
+				this.SendPropertyChanging();
+				this._userConnectAdd = value;
+				this.SendPropertyChanged("userConnectAdd");
+				this.OnuserConnectAddChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userPrefer", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+	public string userPrefer
+	{
+		get
+		{
+			return this._userPrefer;
+		}
+		set
+		{
+			if ((this._userPrefer != value))
+			{
+				this.OnuserPreferChanging(value);
+				this.SendPropertyChanging();
+				this._userPrefer = value;
+				this.SendPropertyChanged("userPrefer");
+				this.OnuserPreferChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userLoginTimes", DbType="Int NOT NULL")]
+	public int userLoginTimes
+	{
+		get
+		{
+			return this._userLoginTimes;
+		}
+		set
+		{
+			if ((this._userLoginTimes != value))
+			{
+				this.OnuserLoginTimesChanging(value);
+				this.SendPropertyChanging();
+				this._userLoginTimes = value;
+				this.SendPropertyChanged("userLoginTimes");
+				this.OnuserLoginTimesChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userConnectPhone", DbType="Decimal(11,0)")]
+	public System.Nullable<decimal> userConnectPhone
+	{
+		get
+		{
+			return this._userConnectPhone;
+		}
+		set
+		{
+			if ((this._userConnectPhone != value))
+			{
+				this.OnuserConnectPhoneChanging(value);
+				this.SendPropertyChanging();
+				this._userConnectPhone = value;
+				this.SendPropertyChanged("userConnectPhone");
+				this.OnuserConnectPhoneChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userSign", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+	public string userSign
+	{
+		get
+		{
+			return this._userSign;
+		}
+		set
+		{
+			if ((this._userSign != value))
+			{
+				this.OnuserSignChanging(value);
+				this.SendPropertyChanging();
+				this._userSign = value;
+				this.SendPropertyChanged("userSign");
+				this.OnuserSignChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userConnectEmail", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+	public string userConnectEmail
+	{
+		get
+		{
+			return this._userConnectEmail;
+		}
+		set
+		{
+			if ((this._userConnectEmail != value))
+			{
+				this.OnuserConnectEmailChanging(value);
+				this.SendPropertyChanging();
+				this._userConnectEmail = value;
+				this.SendPropertyChanged("userConnectEmail");
+				this.OnuserConnectEmailChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lastLoginOutTime", DbType="DateTime NOT NULL")]
+	public System.DateTime lastLoginOutTime
+	{
+		get
+		{
+			return this._lastLoginOutTime;
+		}
+		set
+		{
+			if ((this._lastLoginOutTime != value))
+			{
+				this.OnlastLoginOutTimeChanging(value);
+				this.SendPropertyChanging();
+				this._lastLoginOutTime = value;
+				this.SendPropertyChanged("lastLoginOutTime");
+				this.OnlastLoginOutTimeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userLatitude", DbType="Float NOT NULL")]
+	public double userLatitude
+	{
+		get
+		{
+			return this._userLatitude;
+		}
+		set
+		{
+			if ((this._userLatitude != value))
+			{
+				this.OnuserLatitudeChanging(value);
+				this.SendPropertyChanging();
+				this._userLatitude = value;
+				this.SendPropertyChanged("userLatitude");
+				this.OnuserLatitudeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userLongitude", DbType="Float NOT NULL")]
+	public double userLongitude
+	{
+		get
+		{
+			return this._userLongitude;
+		}
+		set
+		{
+			if ((this._userLongitude != value))
+			{
+				this.OnuserLongitudeChanging(value);
+				this.SendPropertyChanging();
+				this._userLongitude = value;
+				this.SendPropertyChanged("userLongitude");
+				this.OnuserLongitudeChanged();
 			}
 		}
 	}

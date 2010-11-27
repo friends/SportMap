@@ -46,7 +46,7 @@
         </div>
     </div>
     <div id = "map">
-      <uc1:GoogleMapForASPNet ID = "googleMapForASPNet" runat = "server" />
+      <uc1:GoogleMapForASPNET ID = "googleMapForASPNet" runat = "server" />
       </div>      
         <div id = "footer">
         <ul id="option">
