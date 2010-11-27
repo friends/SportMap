@@ -4,16 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.Security;
-using SportMap.DAL;
+//using SportMap.DAL;
 
 /// <summary>
 ///实现了IsUserInType方法的Page的子类
 /// </summary>
 public class CheckPage : System.Web.UI.Page
 {
-    public bool IsUserInType(decimal typeId)
+     /*public bool IsUserInType(decimal typeId)
     {
-        if (!User.Identity.IsAuthenticated)
+       if (!User.Identity.IsAuthenticated)
             return false;
         UserHandler uh = new UserHandler();
         if(uh.SetCurrentUserById(User.Identity.Name)==ErrorMessage.NOT_EXIST)
@@ -22,5 +22,5 @@ public class CheckPage : System.Web.UI.Page
             return true;
         else
             return false;
-    }
+    }*/
 }

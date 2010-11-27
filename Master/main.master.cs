@@ -30,12 +30,12 @@ public partial class main : System.Web.UI.MasterPage
     }
     protected void searchImageButton_Click(object sender, ImageClickEventArgs e)
     {
-        DataClassesDataContext dcdc = new DataClassesDataContext();
-       //gameNews gn = dcdc.gameNews.Single(P => P.game
+
     }
     protected void footballLinkBtn_Click(object sender, EventArgs e)
     {
-        
+        //DataClassesDataContext dcdc = new DataClassesDataContext();
+        //gameNews gn = dcdc.gameNews.Single(P => P.gameType == "football");
     }
     protected void basketballLinkBtn_Click(object sender, EventArgs e)
     {

@@ -11,4 +11,8 @@ public partial class UI_Register : System.Web.UI.Page
     {
 
     }
+    protected void btnRegister_Click(object sender, EventArgs e)
+    {
+
+    }
 }
