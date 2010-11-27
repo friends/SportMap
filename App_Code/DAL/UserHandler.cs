@@ -56,9 +56,14 @@ namespace SportMap.DAL
         /// </summary>
         public ErrorMessage SetCurrentUserById(string uid)
         {
-            user queryUser = (from users in db.user
+            var queryUsers = from users in db.user
                               where users.userId == uid
-                              select users).First();
+                              select users;
+            user queryUser;
+            if (!queryUsers.Any())
+                queryUser = null;
+            else
+                queryUser = queryUsers.First();
             if (queryUser != null)
             {
                 currentUser = queryUser;
@@ -261,7 +266,7 @@ namespace SportMap.DAL
                     currentUser.userConnectEmail = value;
             }
         }
-
+        
         public System.Nullable<System.DateTime> currentUserBirthday
         {
             get
