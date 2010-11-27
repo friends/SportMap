@@ -10,11 +10,9 @@
       <Column Name="pwdProtectA" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="pwdProtectQ" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="userSex" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="userLocation" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="userBirthday" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="userConnectMsn" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="userConnectqq" Type="System.Decimal" DbType="Decimal(12,0)" CanBeNull="true" />
-      <Column Name="userConnectAdd" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="userPrefer" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="userLoginTimes" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="userConnectPhone" Type="System.Decimal" DbType="Decimal(11,0)" CanBeNull="true" />

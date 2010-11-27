@@ -182,22 +182,6 @@ namespace SportMap.DAL
             }
         }
 
-        public string currentUserLocation
-        {
-            get
-            {
-                if (currentUser == null)
-                    return null;
-                else
-                    return currentUser.userLocation;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.userLocation = value;
-            }
-        }
-
         public string currentUserId
         {
             get
@@ -275,22 +259,6 @@ namespace SportMap.DAL
             {
                 if (currentUser != null)
                     currentUser.userConnectEmail = value;
-            }
-        }
-
-        public string currentUserConnectAdd
-        {
-            get
-            {
-                if (currentUser == null)
-                    return null;
-                else
-                    return currentUser.userConnectAdd;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.userConnectAdd = value;
             }
         }
 

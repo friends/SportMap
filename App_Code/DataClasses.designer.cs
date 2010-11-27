@@ -95,15 +95,11 @@ public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private System.Nullable<bool> _userSex;
 	
-	private string _userLocation;
-	
 	private System.Nullable<System.DateTime> _userBirthday;
 	
 	private string _userConnectMsn;
 	
 	private System.Nullable<decimal> _userConnectqq;
-	
-	private string _userConnectAdd;
 	
 	private string _userPrefer;
 	
@@ -141,16 +137,12 @@ public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnpwdProtectQChanged();
     partial void OnuserSexChanging(System.Nullable<bool> value);
     partial void OnuserSexChanged();
-    partial void OnuserLocationChanging(string value);
-    partial void OnuserLocationChanged();
     partial void OnuserBirthdayChanging(System.Nullable<System.DateTime> value);
     partial void OnuserBirthdayChanged();
     partial void OnuserConnectMsnChanging(string value);
     partial void OnuserConnectMsnChanged();
     partial void OnuserConnectqqChanging(System.Nullable<decimal> value);
     partial void OnuserConnectqqChanged();
-    partial void OnuserConnectAddChanging(string value);
-    partial void OnuserConnectAddChanged();
     partial void OnuserPreferChanging(string value);
     partial void OnuserPreferChanged();
     partial void OnuserLoginTimesChanging(int value);
@@ -334,26 +326,6 @@ public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userLocation", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-	public string userLocation
-	{
-		get
-		{
-			return this._userLocation;
-		}
-		set
-		{
-			if ((this._userLocation != value))
-			{
-				this.OnuserLocationChanging(value);
-				this.SendPropertyChanging();
-				this._userLocation = value;
-				this.SendPropertyChanged("userLocation");
-				this.OnuserLocationChanged();
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userBirthday", DbType="DateTime")]
 	public System.Nullable<System.DateTime> userBirthday
 	{
@@ -410,26 +382,6 @@ public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
 				this._userConnectqq = value;
 				this.SendPropertyChanged("userConnectqq");
 				this.OnuserConnectqqChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userConnectAdd", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-	public string userConnectAdd
-	{
-		get
-		{
-			return this._userConnectAdd;
-		}
-		set
-		{
-			if ((this._userConnectAdd != value))
-			{
-				this.OnuserConnectAddChanging(value);
-				this.SendPropertyChanging();
-				this._userConnectAdd = value;
-				this.SendPropertyChanged("userConnectAdd");
-				this.OnuserConnectAddChanged();
 			}
 		}
 	}
