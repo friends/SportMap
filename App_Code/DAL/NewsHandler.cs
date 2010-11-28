@@ -8,7 +8,7 @@ namespace SportMap.DAL
     /// <summary>
     ///UserHandler 的摘要说明
     /// </summary>
-    public class NewsHandler
+    public class NewsHandler : IHandler
     {
         private DataClassesDataContext db;
 
@@ -20,37 +20,44 @@ namespace SportMap.DAL
             }
             set
             {
-                currentNews = value;
+                if (value == null)//允许给currentNews赋值null
+                    currentNews = null;
+                else
+                    SetCurrentNewsById(value.gameNewsId);//交给SetCurrentNewsById处理
             }
         }
+        //三个构造方法
         public NewsHandler(int gameNewsId)
         {
             db = new DataClassesDataContext();
-            currentNews = db.gameNews.First(news => news.gameNewsId == gameNewsId);
+            SetCurrentNewsById(gameNewsId);
         }
         public NewsHandler(gameNews gamenews)
         {
             db = new DataClassesDataContext();
             currentNews = gamenews;
         }
+        public NewsHandler()
+        {
+            db = new DataClassesDataContext();
+            currentNews = null;
+        }
 
         //接口IHandler的实现
-        public ErrorMessage Insert()
+        public ErrorMessage Insert(object o)
         {
-            if (currentNews == null)
-            {
+            gameNews n = (gameNews)o;
+            if (n == null)
                 return ErrorMessage.ERROR;
-            }
-            var n = db.gameNews.First(news => news.gameNewsId == currentNews.gameNewsId);
-            if (n != null)
+            else if (SetCurrentNewsById(n.gameNewsId) == ErrorMessage.NOT_EXIST)
             {
-                return ErrorMessage.ALREADY_EXIST;
-            }
-            else
-            {
-                db.gameNews.InsertOnSubmit(currentNews);
+                db.gameNews.InsertOnSubmit(n);
+                Submit();
+                SetCurrentNewsById(n.gameNewsId);
                 return ErrorMessage.OK;
             }
+            else
+                return ErrorMessage.ALREADY_EXIST;
         }
         public ErrorMessage Delete()
         {
@@ -70,6 +77,28 @@ namespace SportMap.DAL
         {
             db.SubmitChanges();
             return ErrorMessage.OK;
+        }
+        //self
+
+        /// <summary>
+        ///根据gameNewsId找到对应存在于表中的gameNews,存在则将其赋值给currentNews,若不存在返回ErrorMessage.NOT_EXIST,currentNews置为null
+        /// </summary>
+        private ErrorMessage SetCurrentNewsById(int nid)
+        {
+            var queryNews = from news in db.gameNews
+                             where news.gameNewsId== nid
+                             select news;
+            if (!queryNews.Any())
+            {
+                currentNews = null;
+                return ErrorMessage.NOT_EXIST;
+            }
+            else
+            {
+                currentNews = queryNews.First();
+                return ErrorMessage.OK;
+            }
+
         }
     }
 }

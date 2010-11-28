@@ -17,7 +17,7 @@ namespace SportMap.DAL
     /// </summary>
     public interface IHandler
     {
-        ErrorMessage Insert(user u);
+        ErrorMessage Insert(object o);
         ErrorMessage Delete();
         ErrorMessage Submit();
     }

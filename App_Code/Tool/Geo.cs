@@ -16,7 +16,7 @@ namespace SportMap.Tool
         public struct geo
         {
             public string Latitude;
-            public string Longtitude;
+            public string Longitude;
         }
 
         public static geo Getgeo(
@@ -40,10 +40,10 @@ namespace SportMap.Tool
             {
                 geo = mymatch.Value;
                 string latitude = geo.Substring(geo.IndexOf("lat:") + 4, 5);
-                string longtitude = geo.Substring(geo.IndexOf("lng:") + 4, 5);
+                string Longitude = geo.Substring(geo.IndexOf("lng:") + 4, 5);
 
                 mygeo.Latitude = latitude;
-                mygeo.Longtitude = longtitude;
+                mygeo.Longitude = Longitude;
             }
             myresponse.Close();
 
@@ -52,22 +52,23 @@ namespace SportMap.Tool
             return mygeo;
         }
 
-        public static string GetLongtitude(
-        string location)
+        public static bool GetLocation(
+        string location, out string Longitude, out string Latitude)
         {
 
             geo mygeo = Getgeo(location);
-            return mygeo.Longtitude;
-
-        }
-
-
-        public static string GetLatitude(
-        string location)
-        {
-            geo mygeo = Getgeo(location);
-            return mygeo.Latitude;
-
-        }
+            if (mygeo.Longitude == null || mygeo.Latitude == null)
+            {
+                Longitude = "113";
+                Latitude = "24";
+                return false;
+            }
+            else
+            {
+                Longitude = mygeo.Longitude;
+                Latitude = mygeo.Latitude;
+                return true;
+            }
+         }
     }
 }

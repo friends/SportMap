@@ -12,16 +12,32 @@ namespace SportMap.DAL
     public class UserHandler : IHandler
     {
         private DataClassesDataContext db;
-        private user currentUser;
+        public user currentUser
+        {
+            get
+            {
+                return currentUser;
+            }
+            set
+            {
+                if (value == null)//允许给currentUser赋值null
+                    currentUser = null;
+                else
+                    SetCurrentUserById(value.userId);//交给SetCurrentUserById处理
+            }
+        }
         public UserHandler()
         {
             db = new DataClassesDataContext();
             currentUser = null;
         }
         //接口IHandler的实现
-        public ErrorMessage Insert(user u)
+        public ErrorMessage Insert(object o)
         {
-            if (SetCurrentUserById(u.userId) == ErrorMessage.NOT_EXIST)
+            user u = (user)o;
+            if (u == null)
+                return ErrorMessage.ERROR;
+            else if (SetCurrentUserById(u.userId) == ErrorMessage.NOT_EXIST)
             {
                 db.user.InsertOnSubmit(u);
                 Submit();
@@ -34,7 +50,7 @@ namespace SportMap.DAL
         public ErrorMessage Delete()
         {
             if (currentUser == null)
-                return ErrorMessage.NOT_EXIST;
+                return ErrorMessage.ERROR;
             else
             {
                 db.user.DeleteOnSubmit(currentUser);
@@ -52,332 +68,23 @@ namespace SportMap.DAL
         //类UserHandler自己的方法
 
         /// <summary>
-        ///根据userId找到对应存在于表中的user,存在则将其赋值给currentUser,若不存在返回ErrorMessage.NOT_EXIST
+        ///根据userId找到对应存在于表中的user,存在则将其赋值给currentUser,若不存在返回ErrorMessage.NOT_EXIST,currentUser置为null
         /// </summary>
         public ErrorMessage SetCurrentUserById(string uid)
         {
             var queryUsers = from users in db.user
-                              where users.userId == uid
-                              select users;
-            user queryUser;
+                             where users.userId == uid
+                             select users;
             if (!queryUsers.Any())
-                queryUser = null;
-            else
-                queryUser = queryUsers.First();
-            if (queryUser != null)
             {
-                currentUser = queryUser;
+                currentUser = null;
+                return ErrorMessage.NOT_EXIST;
+            }
+            else
+            {
+                currentUser = queryUsers.First();
                 return ErrorMessage.OK;
             }
-            else
-                return ErrorMessage.NOT_EXIST;
         }
-
-        //访问currentUser的属性
-
-        public string currentUserPassword
-        {
-            get
-            {
-                if(currentUser==null)
-                    return null;
-                else
-                    return currentUser.userPwd;
-            }
-            set
-            {
-                if(currentUser!=null)
-                    currentUser.userPwd=value;
-            }
-        }
-
-        public decimal currentUserType
-        {
-            get
-            {
-                if (currentUser == null)
-                    return -1;
-                else
-                    return currentUser.userType;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.userType = value;
-            }
-        }
-
-        public string currentUserSign
-        {
-            get
-            {
-                if (currentUser == null)
-                    return null;
-                else
-                    return currentUser.userSign;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.userSign = value;
-            }
-        }
-
-        public System.Nullable<bool> currentUserSex
-        {
-            get
-            {
-                if (currentUser == null)
-                    return null;
-                else
-                    return currentUser.userSex;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.userSex = value;
-            }
-        }
-
-        public string currentUserPrefer
-        {
-            get
-            {
-                if (currentUser == null)
-                    return null;
-                else
-                    return currentUser.userPrefer;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.userPrefer = value;
-            }
-        }
-
-        public string currentUserName
-        {
-            get
-            {
-                if (currentUser == null)
-                    return null;
-                else
-                    return currentUser.userName;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.userName = value;
-            }
-        }
-
-        public int currentUserLoginTimes
-        {
-            get
-            {
-                if (currentUser == null)
-                    return 0;
-                else
-                    return currentUser.userLoginTimes;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.userLoginTimes = value;
-            }
-        }
-
-        public string currentUserId
-        {
-            get
-            {
-                if (currentUser == null)
-                    return null;
-                else
-                    return currentUser.userId;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.userId = value;
-            }
-        }
-
-        public System.Nullable<decimal> currentUserConnectqq
-        {
-            get
-            {
-                if (currentUser == null)
-                    return null;
-                else
-                    return currentUser.userConnectqq;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.userConnectqq = value;
-            }
-        }
-
-        public System.Nullable<decimal> currentUserConnectPhone
-        {
-            get
-            {
-                if (currentUser == null)
-                    return null;
-                else
-                    return currentUser.userConnectPhone;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.userConnectPhone = value;
-            }
-        }
-
-        public string currentUserConnectMsn
-        {
-            get
-            {
-                if (currentUser == null)
-                    return null;
-                else
-                    return currentUser.userConnectMsn;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.userConnectMsn = value;
-            }
-        }
-
-        public string currentUserConnectEmail
-        {
-            get
-            {
-                if (currentUser == null)
-                    return null;
-                else
-                    return currentUser.userConnectEmail;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.userConnectEmail = value;
-            }
-        }
-        
-        public System.Nullable<System.DateTime> currentUserBirthday
-        {
-            get
-            {
-                if (currentUser == null)
-                    return null;
-                else
-                    return currentUser.userBirthday;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.userBirthday = value;
-            }
-        }
-
-        public string currentUserpwdProtectQ
-        {
-            get
-            {
-                if (currentUser == null)
-                    return null;
-                else
-                    return currentUser.pwdProtectQ;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.pwdProtectQ = value;
-            }
-        }
-
-        public string currentUserpwdProtectA
-        {
-            get
-            {
-                if (currentUser == null)
-                    return null;
-                else
-                    return currentUser.pwdProtectA;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.pwdProtectA = value;
-            }
-        }
-
-        public System.Nullable<int> currentUserpictureId
-        {
-            get
-            {
-                if (currentUser == null)
-                    return null;
-                else
-                    return currentUser.pictureId;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.pictureId = value;
-            }
-        }
-
-        public System.DateTime currentUserlastLoginOutTime
-        {
-            get
-            {
-                if (currentUser == null)
-                    return DateTime.MinValue;
-                else
-                    return currentUser.lastLoginOutTime;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.lastLoginOutTime = value;
-            }
-        }
-
-        public double currentUserLongitude
-        {
-            get
-            {
-                if (currentUser == null)
-                    return 0;
-                else
-                    return currentUser.userLongitude;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.userLongitude = value;
-            }
-        }
-
-        public double currentUserLatitude
-        {
-            get
-            {
-                if (currentUser == null)
-                    return 0;
-                else
-                    return currentUser.userLatitude;
-            }
-            set
-            {
-                if (currentUser != null)
-                    currentUser.userLatitude = value;
-            }
-        }
-
     }
 }
