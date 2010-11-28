@@ -22,17 +22,17 @@ public partial class UI_Login : System.Web.UI.Page
     protected void btnLogin_Click(object sender, EventArgs e)
     {
         UserHandler uh = new UserHandler();
-        FormsAuthenticationConfiguration conf=new FormsAuthenticationConfiguration();
         if (uh.SetCurrentUserById(txtUserName.Text) == ErrorMessage.NOT_EXIST)
-            lblMessage.Text="用户名不存在";
+            lblMessage.Text="用户ID不存在";
         else 
         {
-            if (txtPassword.Text != uh.currentUserPassword)
+            if (txtPassword.Text != uh.currentUser.userPwd)
                 lblMessage.Text = "密码错误";
             else
             {
                 if (chkRemember.Checked)
                 {
+                    FormsAuthenticationConfiguration conf = new FormsAuthenticationConfiguration();
                     TimeSpan old = conf.Timeout;
                     conf.Timeout = System.TimeSpan.FromDays(30);
                     FormsAuthentication.RedirectFromLoginPage(txtUserName.Text, true);

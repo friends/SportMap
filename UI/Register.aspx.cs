@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.Security;
 using SportMap.DAL;
 using SportMap.Tool;
 
@@ -33,12 +32,20 @@ public partial class UI_Register : System.Web.UI.Page
 
         if (uid == null || pwd == null || repwd == null || question == null || answer == null
             || email == null || location == null)
+        {
             lblMessage.Text = "必填项不能为空！";
+            return;
+        }
         else if (!pwd.Equals(repwd))
+        {
             lblMessage.Text = "重复密码错误！";
-        else if(registerUser(new string[] 
-        { uid, name, pwd, repwd, question, answer, qq, msn, email, phone, location, sex, birthday, prefer }))
-            FormsAuthentication.RedirectToLoginPage();
+            return;
+        }
+        else if (registerUser(
+            new string[] { uid, name, pwd, repwd, question, answer, qq, msn, email, phone, location, sex, birthday, prefer }
+            )
+            )
+            Response.Redirect("~/UI/Login.aspx", true);
     }
 
     private string GetFromInput(string input)
@@ -52,15 +59,24 @@ public partial class UI_Register : System.Web.UI.Page
     private bool registerUser(string[] paras)
     {
         decimal qq;
-        if(!decimal.TryParse(paras[6],out qq) && paras[6]!=null)
+        if (!decimal.TryParse(paras[6], out qq) && paras[6] != null)
+        {
             lblMessage.Text = "qq号码错误！";
+            return false;
+        }
         decimal phone;
         if (!decimal.TryParse(paras[9], out phone) && paras[6] != null)
+        {
             lblMessage.Text = "电话号码错误！";
-        double latitude;
-        double longitude;
-        double.TryParse(Geo.GetLatitude(paras[10]),out latitude);
-        double.TryParse(Geo.GetLongtitude(paras[10]),out longitude);
+            return false;
+        }
+        //解析地址经纬度
+        string strlatitude, strlongitude;
+        Geo.GetLocation(paras[10], out strlongitude, out strlatitude);
+        double latitude, longitude;
+        latitude=double.Parse(strlongitude);
+        longitude=double.Parse(strlatitude);
+
         bool sex;
         if(paras[11]=="female")
             sex=false;
@@ -76,10 +92,14 @@ public partial class UI_Register : System.Web.UI.Page
         UserHandler uh=new UserHandler();
         user newUser = new user {userId=paras[0],userName=paras[1],userPwd=paras[2],pwdProtectQ=paras[4],
         pwdProtectA=paras[5],userConnectqq=qq,userConnectMsn=paras[7],userConnectEmail=paras[8],
-        userConnectPhone=phone,userLatitude=latitude,userLongitude=longitude,userSex=sex,userBirthday=birthday,
-        userPrefer=paras[13],userType=1,lastLoginOutTime=DateTime.MinValue,userLoginTimes=0};
-        if(uh.Insert(newUser)==ErrorMessage.ALREADY_EXIST)
-            lblMessage.Text="该ID已被注册！";
+        userConnectPhone=phone,userLatitude=latitude,userLongitude=longitude,userSex=sex,
+        userBirthday=birthday,userPrefer=paras[13],
+        userType=1,lastLoginOutTime=DateTime.MinValue,userLoginTimes=0};
+        if (uh.Insert(newUser) == ErrorMessage.ALREADY_EXIST)
+        {
+            lblMessage.Text = "该ID已被注册！";
+            return false;
+        }
         return true;
     }
 }
