@@ -32,11 +32,11 @@
                 <li><asp:TextBox ID = "contentTextBox" runat = "server"></asp:TextBox></li>
                 <li>
                     <asp:DropDownList ID = "typeDropDownList" runat = "server">
-                        <asp:ListItem Text = "athlete" Value="1"></asp:ListItem>
-                        <asp:ListItem Text = "badminton" Value="2"></asp:ListItem>
-                        <asp:ListItem Text = "football"></asp:ListItem>
-                        <asp:ListItem Text = "basketball"></asp:ListItem>
-                        <asp:ListItem Text = "country"></asp:ListItem>
+                        <asp:ListItem Text = "badminton" Value="1"></asp:ListItem>
+                        <asp:ListItem Text = "football" Value="2"></asp:ListItem>
+                        <asp:ListItem Text = "basketball" Value="3"></asp:ListItem>
+                        <asp:ListItem Text = "picture" Value="4"></asp:ListItem>
+                        <asp:ListItem Text = "video" Value="5"></asp:ListItem>
                     </asp:DropDownList>
                 </li>
                 <%--在这里使用asp.net的css类属性就能正确地实现垂直居中了--%>
@@ -46,7 +46,7 @@
         </div>
     </div>
     <div id = "map">
-      <uc1:GoogleMapForASPNET ID = "googleMapForASPNet" runat = "server" />
+      <uc1:GoogleMapForASPNet ID = "googleMapForASPNet" runat = "server" />
       </div>      
         <div id = "footer">
         <ul id="option">

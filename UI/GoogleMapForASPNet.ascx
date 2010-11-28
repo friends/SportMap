@@ -22,7 +22,7 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeFile="GoogleMapForASPNet.ascx.cs" Inherits="GoogleMapForASPNet" %>
 <%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
     Namespace="System.Web.UI" TagPrefix="asp" %>
-<asp:ScriptManager ID="ScriptManager1" EnablePartialRendering="true" runat="server">
+<asp:ScriptManager ID="ScriptManager1" runat="server">
  <Services>
     <asp:ServiceReference Path="~/GService.asmx" />
     <asp:ServiceReference Path="~/GoogleMapForASPNet.ascx" />

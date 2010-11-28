@@ -32,10 +32,13 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
   partial void Insertuser(user instance);
   partial void Updateuser(user instance);
   partial void Deleteuser(user instance);
+  partial void InsertgameNews(gameNews instance);
+  partial void UpdategameNews(gameNews instance);
+  partial void DeletegameNews(gameNews instance);
   #endregion
 	
 	public DataClassesDataContext() : 
-			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SportMapDBConnectionString"].ConnectionString, mappingSource)
+			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SportMapDBConnectionString1"].ConnectionString, mappingSource)
 	{
 		OnCreated();
 	}
@@ -69,6 +72,14 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<user>();
+		}
+	}
+	
+	public System.Data.Linq.Table<gameNews> gameNews
+	{
+		get
+		{
+			return this.GetTable<gameNews>();
 		}
 	}
 }
@@ -326,7 +337,7 @@ public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userBirthday", DbType="DateTime2")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userBirthday", DbType="DateTime")]
 	public System.Nullable<System.DateTime> userBirthday
 	{
 		get
@@ -486,7 +497,7 @@ public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lastLoginOutTime", DbType="DateTime2 NOT NULL")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lastLoginOutTime", DbType="DateTime NOT NULL")]
 	public System.DateTime lastLoginOutTime
 	{
 		get
@@ -542,6 +553,356 @@ public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
 				this._userLongitude = value;
 				this.SendPropertyChanged("userLongitude");
 				this.OnuserLongitudeChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.gameNews")]
+public partial class gameNews : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _gameNewsId;
+	
+	private string _gameNewsTitle;
+	
+	private string _gameNewsKeyWords;
+	
+	private string _gameNewsContent;
+	
+	private string _gameNewsAuthor;
+	
+	private int _gameNewsHitTimes;
+	
+	private System.DateTime _gameNewsCreatedTime;
+	
+	private int _gameNewsEditTimes;
+	
+	private System.Nullable<decimal> _gameNewsPriority;
+	
+	private double _longitude;
+	
+	private double _latitude;
+	
+	private string _url;
+	
+	private string _gameType;
+	
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OngameNewsIdChanging(int value);
+    partial void OngameNewsIdChanged();
+    partial void OngameNewsTitleChanging(string value);
+    partial void OngameNewsTitleChanged();
+    partial void OngameNewsKeyWordsChanging(string value);
+    partial void OngameNewsKeyWordsChanged();
+    partial void OngameNewsContentChanging(string value);
+    partial void OngameNewsContentChanged();
+    partial void OngameNewsAuthorChanging(string value);
+    partial void OngameNewsAuthorChanged();
+    partial void OngameNewsHitTimesChanging(int value);
+    partial void OngameNewsHitTimesChanged();
+    partial void OngameNewsCreatedTimeChanging(System.DateTime value);
+    partial void OngameNewsCreatedTimeChanged();
+    partial void OngameNewsEditTimesChanging(int value);
+    partial void OngameNewsEditTimesChanged();
+    partial void OngameNewsPriorityChanging(System.Nullable<decimal> value);
+    partial void OngameNewsPriorityChanged();
+    partial void OnlongitudeChanging(double value);
+    partial void OnlongitudeChanged();
+    partial void OnlatitudeChanging(double value);
+    partial void OnlatitudeChanged();
+    partial void OnurlChanging(string value);
+    partial void OnurlChanged();
+    partial void OngameTypeChanging(string value);
+    partial void OngameTypeChanged();
+    #endregion
+	
+	public gameNews()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int gameNewsId
+	{
+		get
+		{
+			return this._gameNewsId;
+		}
+		set
+		{
+			if ((this._gameNewsId != value))
+			{
+				this.OngameNewsIdChanging(value);
+				this.SendPropertyChanging();
+				this._gameNewsId = value;
+				this.SendPropertyChanged("gameNewsId");
+				this.OngameNewsIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsTitle", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+	public string gameNewsTitle
+	{
+		get
+		{
+			return this._gameNewsTitle;
+		}
+		set
+		{
+			if ((this._gameNewsTitle != value))
+			{
+				this.OngameNewsTitleChanging(value);
+				this.SendPropertyChanging();
+				this._gameNewsTitle = value;
+				this.SendPropertyChanged("gameNewsTitle");
+				this.OngameNewsTitleChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsKeyWords", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string gameNewsKeyWords
+	{
+		get
+		{
+			return this._gameNewsKeyWords;
+		}
+		set
+		{
+			if ((this._gameNewsKeyWords != value))
+			{
+				this.OngameNewsKeyWordsChanging(value);
+				this.SendPropertyChanging();
+				this._gameNewsKeyWords = value;
+				this.SendPropertyChanged("gameNewsKeyWords");
+				this.OngameNewsKeyWordsChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsContent", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+	public string gameNewsContent
+	{
+		get
+		{
+			return this._gameNewsContent;
+		}
+		set
+		{
+			if ((this._gameNewsContent != value))
+			{
+				this.OngameNewsContentChanging(value);
+				this.SendPropertyChanging();
+				this._gameNewsContent = value;
+				this.SendPropertyChanged("gameNewsContent");
+				this.OngameNewsContentChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsAuthor", DbType="VarChar(16) NOT NULL", CanBeNull=false)]
+	public string gameNewsAuthor
+	{
+		get
+		{
+			return this._gameNewsAuthor;
+		}
+		set
+		{
+			if ((this._gameNewsAuthor != value))
+			{
+				this.OngameNewsAuthorChanging(value);
+				this.SendPropertyChanging();
+				this._gameNewsAuthor = value;
+				this.SendPropertyChanged("gameNewsAuthor");
+				this.OngameNewsAuthorChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsHitTimes", DbType="Int NOT NULL")]
+	public int gameNewsHitTimes
+	{
+		get
+		{
+			return this._gameNewsHitTimes;
+		}
+		set
+		{
+			if ((this._gameNewsHitTimes != value))
+			{
+				this.OngameNewsHitTimesChanging(value);
+				this.SendPropertyChanging();
+				this._gameNewsHitTimes = value;
+				this.SendPropertyChanged("gameNewsHitTimes");
+				this.OngameNewsHitTimesChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsCreatedTime", DbType="DateTime NOT NULL")]
+	public System.DateTime gameNewsCreatedTime
+	{
+		get
+		{
+			return this._gameNewsCreatedTime;
+		}
+		set
+		{
+			if ((this._gameNewsCreatedTime != value))
+			{
+				this.OngameNewsCreatedTimeChanging(value);
+				this.SendPropertyChanging();
+				this._gameNewsCreatedTime = value;
+				this.SendPropertyChanged("gameNewsCreatedTime");
+				this.OngameNewsCreatedTimeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsEditTimes", DbType="Int NOT NULL")]
+	public int gameNewsEditTimes
+	{
+		get
+		{
+			return this._gameNewsEditTimes;
+		}
+		set
+		{
+			if ((this._gameNewsEditTimes != value))
+			{
+				this.OngameNewsEditTimesChanging(value);
+				this.SendPropertyChanging();
+				this._gameNewsEditTimes = value;
+				this.SendPropertyChanged("gameNewsEditTimes");
+				this.OngameNewsEditTimesChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameNewsPriority", DbType="Decimal(1,0)")]
+	public System.Nullable<decimal> gameNewsPriority
+	{
+		get
+		{
+			return this._gameNewsPriority;
+		}
+		set
+		{
+			if ((this._gameNewsPriority != value))
+			{
+				this.OngameNewsPriorityChanging(value);
+				this.SendPropertyChanging();
+				this._gameNewsPriority = value;
+				this.SendPropertyChanged("gameNewsPriority");
+				this.OngameNewsPriorityChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_longitude", DbType="Float NOT NULL")]
+	public double longitude
+	{
+		get
+		{
+			return this._longitude;
+		}
+		set
+		{
+			if ((this._longitude != value))
+			{
+				this.OnlongitudeChanging(value);
+				this.SendPropertyChanging();
+				this._longitude = value;
+				this.SendPropertyChanged("longitude");
+				this.OnlongitudeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_latitude", DbType="Float NOT NULL")]
+	public double latitude
+	{
+		get
+		{
+			return this._latitude;
+		}
+		set
+		{
+			if ((this._latitude != value))
+			{
+				this.OnlatitudeChanging(value);
+				this.SendPropertyChanging();
+				this._latitude = value;
+				this.SendPropertyChanged("latitude");
+				this.OnlatitudeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_url", DbType="NVarChar(100)")]
+	public string url
+	{
+		get
+		{
+			return this._url;
+		}
+		set
+		{
+			if ((this._url != value))
+			{
+				this.OnurlChanging(value);
+				this.SendPropertyChanging();
+				this._url = value;
+				this.SendPropertyChanged("url");
+				this.OnurlChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameType", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string gameType
+	{
+		get
+		{
+			return this._gameType;
+		}
+		set
+		{
+			if ((this._gameType != value))
+			{
+				this.OngameTypeChanging(value);
+				this.SendPropertyChanging();
+				this._gameType = value;
+				this.SendPropertyChanged("gameType");
+				this.OngameTypeChanged();
 			}
 		}
 	}

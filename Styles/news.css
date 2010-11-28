@@ -1,0 +1,23 @@
+﻿*
+{
+}
+body
+{
+    font: small/1 "宋体",serif;
+    background:url(../Resource/bg.png) repeat-x scroll top;
+    color: #000;
+}
+#content img
+{
+    float:left;
+}
+h2, h3,span
+{
+    display:block;
+    background:#fff;
+}
+#content p
+{
+    height: 70px;
+    overflow:hidden;
+}
