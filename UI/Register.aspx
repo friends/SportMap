@@ -7,7 +7,38 @@
     <title>注册</title>
     <link rel="stylesheet" href="../Styles/login.css" type="text/css" media="screen" />
     <script type="text/javascript">
-        if (top.location != self.location) { top.location = self.location; }
+        var popUpWin = 0;
+        function PopUpWindow(URLStr, left, top, width, height, newWin, scrollbars) {
+            if (typeof (newWin) == "undefined")
+                newWin = false;
+
+            if (typeof (left) == "undefined")
+                left = 100;
+
+            if (typeof (top) == "undefined")
+                top = 0;
+
+            if (typeof (width) == "undefined")
+                width = 800;
+
+            if (typeof (height) == "undefined")
+                height = 760;
+
+            if (newWin) {
+                open(URLStr, '', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=' + scrollbars + ',resizable=yes,copyhistory=yes,width=' + width + ',height=' + height + ',left=' + left + ', top=' + top + ',screenX=' + left + ',screenY=' + top + '');
+                return;
+            }
+
+            if (typeof (scrollbars) == "undefined") {
+                scrollbars = 0;
+            }
+
+            if (popUpWin) {
+                if (!popUpWin.closed) popUpWin.close();
+            }
+            popUpWin = open(URLStr, 'popUpWin', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=' + scrollbars + ',resizable=yes,copyhistory=yes,width=' + width + ',height=' + height + ',left=' + left + ', top=' + top + ',screenX=' + left + ',screenY=' + top + '');
+            popUpWin.focus();
+        }
     </script>
 </head>
 <body>
@@ -16,6 +47,9 @@
         <p>
             <label for="txtUserId" style="display:block; margin:3px 0;" class="small">用户ID:</label>
             <asp:TextBox ID="txtUserId"  runat="server" Width="200" CssClass="text"></asp:TextBox>
+        </p>
+        <p>
+        <a href="javascript:void(0);" onclick="javascript:PopUpWindow('UploadPhoto.aspx',100,100,600,500);">点击上传照片</a>
         </p>
         <p>
             <label for="txtUserName" style="display:block; margin:3px 0;" class="small">用户名:</label>
