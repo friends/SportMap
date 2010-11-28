@@ -34,7 +34,7 @@ public partial class UI_UploadPhoto : System.Web.UI.Page
             {
                 return;
             }
-            string filename = "xuanye_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ext;
+            string filename = "sportmap_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ext;
             string path = "~/Upload/image/" + filename;
             fuPhoto.PostedFile.SaveAs(Server.MapPath(path));
             Response.Redirect("~/UI/UpLoadPhoto.aspx?Picurl=" + Server.UrlEncode(path));
