@@ -10,7 +10,7 @@
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<h2><%="xxj"%></h2>
+<h2>xxj</h2>
 <%="xxj"%>
     <p>
         <label class="label" for="<%="xxj" %>">标题:</label>
@@ -22,19 +22,6 @@
         <label  class="label gray">提示：Enter产生&lt;p&gt;(换段), Shift+Enter产生&lt;br/&gt;(换行)</label>
     </p>
     
-<script type="text/javascript">
-function addFileToEditor(fileUrl,fileExtension)
-{
-    if(fileExtension=='.gif' || fileExtension=='.jpg' || fileExtension=='.jpeg' || fileExtension=='.bmp' || fileExtension=='.png'){
-        var imageTag="<img src=\""+fileUrl+"\"/>";
-        CKEDITOR.instances.<%="xxj" %>.insertHtml(imageTag); 
-    }else{
-        var imageTag="<a href=\""+fileUrl+"\">"+fileUrl+"</a>";
-        CKEDITOR.instances.<%="xxj" %>.insertHtml(imageTag);
-    }
-    
-}
-</script>
    <p> <asp:Button ID="btnEdit" runat="server" Text="添加" onclick="btnEdit_Click"  CssClass="button" /></p>
 
 </asp:Content>
