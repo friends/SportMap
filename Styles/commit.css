@@ -1,0 +1,9 @@
+﻿body 
+{
+    width:500px;
+    margin:0 auto;
+    font: small/1 "宋体",serif;
+    background:url(../Resource/bg.png) repeat-x scroll top;
+    color: #000;
+}
+

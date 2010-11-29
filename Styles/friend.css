@@ -1,0 +1,23 @@
+﻿body 
+{
+    background:url(../Resource/bg.png) repeat-x scroll top;
+    width:50px;
+    margin:0 auto;
+}
+#friend
+{
+    float:left;
+}
+ul 
+{
+    float:right;
+}
+img
+{
+    margin:5px 5px 5px 5px;
+}
+li
+{
+    list-style:none outside;
+    display:block;
+}
