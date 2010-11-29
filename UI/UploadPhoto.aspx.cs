@@ -59,5 +59,6 @@ public partial class UI_UploadPhoto : System.Web.UI.Page
 
         this.imgphoto.ImageUrl = savepath + filename;
         Page.ClientScript.RegisterStartupScript(typeof(UI_UploadPhoto), "step3", "<script type='text/javascript'>Step3();</script>");
+
     }
 }

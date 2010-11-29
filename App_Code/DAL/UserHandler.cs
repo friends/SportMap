@@ -86,5 +86,22 @@ namespace SportMap.DAL
                 return ErrorMessage.OK;
             }
         }
+
+        public ErrorMessage AddFriend(string userBid)
+        {
+            if (currentUser == null)
+                return ErrorMessage.ERROR;
+            if (userBid == currentUser.userId)
+                return ErrorMessage.ERROR;
+            UserHandler BHandler = new UserHandler();
+            if (BHandler.SetCurrentUserById(userBid) == ErrorMessage.NOT_EXIST)
+                return ErrorMessage.NOT_EXIST;
+            if (currentUser.friend.Any() || currentUser.friend1.Any())
+                return ErrorMessage.ALREADY_EXIST;
+
+            friend newRecord=new friend { userA=currentUser.userId,userB=userBid};
+            currentUser.friend.Add(newRecord);
+            return ErrorMessage.OK;
+        }
     }
 }

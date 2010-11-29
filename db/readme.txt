@@ -3,4 +3,4 @@
 更改表
 user，gamenews，
 删除表
-Location
+picture,video,以及涉及两者的关系
