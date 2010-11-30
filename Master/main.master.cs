@@ -101,11 +101,15 @@ public partial class main : System.Web.UI.MasterPage
     {
         googleMapForASPNet.GoogleMapObject.Points.Clear();
         searchNews("picture");
+        searchNews("basketball");
+        searchNews("football");
+        searchNews("badminton");
+
     }
     protected void textLinkBtn_Click(object sender, EventArgs e)
     {
         googleMapForASPNet.GoogleMapObject.Points.Clear();
-        searchNews("text");
+        searchNews("picture");
     }
     protected void betLinkBtn_Click(object sender, EventArgs e)
     {

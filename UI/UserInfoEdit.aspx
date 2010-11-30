@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="UI_Register" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserInfoEdit.aspx.cs" Inherits="UI_UserInfoEdit" %>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -44,25 +45,21 @@
 <body>
     <form id="form1" runat="server">
     <div id="login"  >
-        <p>
-            <label for="txtUserId" style="display:block; margin:3px 0;" class="small">用户ID:</label>
-            <asp:TextBox ID="txtUserId"  runat="server" Width="200" CssClass="text"></asp:TextBox><b style="color:Red"> *</b>
-        </p>
-        <p>
-        <a href="javascript:void(0);" onclick="javascript:PopUpWindow('UploadPhoto.aspx',100,100,600,500);">点击上传照片</a>
-        </p>
+        
         <p>
             <label for="txtUserName" style="display:block; margin:3px 0;" class="small">用户名:</label>
-            <asp:TextBox ID="txtUserName"  runat="server" Width="200" CssClass="text"></asp:TextBox><b style="color:Red"> *</b>
+            <asp:TextBox ID="txtUserName"  runat="server" Width="200" CssClass="text"></asp:TextBox>
         </p>
-         
+         <p>
+        <a href="javascript:void(0);" onclick="javascript:PopUpWindow('UploadPhoto.aspx',100,100,600,500);">重新上传头像</a>
+        </p>
         <p>
-            <label for="txtPassword" style="display:block;margin:3px 0;" class="small ">密码:</label>
-            <asp:TextBox ID="txtPassword" TextMode="password" runat="server" Width="200"  CssClass="text"></asp:TextBox><b style="color:Red"> *</b>
+            <label for="txtPassword" style="display:block;margin:3px 0;" class="small ">新密码:</label>
+            <asp:TextBox ID="txtPassword" TextMode="password" runat="server" Width="200"  CssClass="text"></asp:TextBox>
         </p>
          <p>
             <label style="display:block;margin:3px 0;" class="small ">密码确认:</label>
-            <asp:TextBox ID="txtrePassword" TextMode="password" runat="server" Width="200"  CssClass="text"></asp:TextBox><b style="color:Red"> *</b>
+            <asp:TextBox ID="txtrePassword" TextMode="password" runat="server" Width="200"  CssClass="text"></asp:TextBox>
         </p>
         <p>
             <label for="txtQuestion" style="display:block; margin:3px 0;" class="small">密码问题:</label>
@@ -91,28 +88,18 @@
         </p>
           <p>
             <label for="txtAddress" style="display:block; margin:3px 0;" class="small">地址:</label>
-            <asp:TextBox ID="txtAddress"  runat="server" Width="200" CssClass="text"></asp:TextBox><b style="color:Red"> *</b>
+            <asp:TextBox ID="txtAddress"  runat="server" Width="200" CssClass="text"></asp:TextBox>
         </p>  
- <p>
-            <label for="rblGender" style="display:block; margin:3px 0;" class="small">性别:</label>
-            <asp:RadioButtonList ID="rblGender" runat="server" Width="200" CssClass="text" TextAlign="Right">
-                <asp:ListItem Value="female">女</asp:ListItem>
-                <asp:ListItem Value="male">男</asp:ListItem>
-            </asp:RadioButtonList>
-        </p>
-        <p>
-            <label for="txtBirthday" style="display:block; margin:3px 0;" class="small">生日:</label>
-            <asp:TextBox ID="txtBirthday"  runat="server" Width="200" CssClass="text"></asp:TextBox>
-        </p>
          <p>
             <label for="txtPrefer" style="display:block; margin:3px 0;" class="small">爱好:</label>
             <asp:TextBox ID="txtPrefer"  runat="server" Width="200" CssClass="text"></asp:TextBox>
         </p> 
         <p>
-            <asp:Button ID="btnRegister" runat="server"   Text="注册" OnClick="btnRegister_Click" CssClass="button" />
+            <asp:Button ID="btnModify" runat="server"   Text="修改" CssClass="button" 
+                onclick="btnModify_Click" />
         </p>
         <p ><asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label></p>
-        <p><a href="../" class="small">&laquo;返回首页</a></p>
+        <p><a href="../Personal.aspx" class="small">&laquo;返回个人主页</a></p>
     </div>
     <div  style="  text-align:center; padding:5px 0;" class="small">Powered by <a href="mailto:xxj050@163.com" target="_blank" >Friends</a></div>
     </form>
@@ -121,3 +108,4 @@
     </script> 
 </body>
 </html>
+
