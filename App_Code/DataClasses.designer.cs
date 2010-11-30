@@ -354,7 +354,7 @@ public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userBirthday", DbType="DateTime2")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userBirthday", DbType="Date")]
 	public System.Nullable<System.DateTime> userBirthday
 	{
 		get
@@ -514,7 +514,7 @@ public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lastLoginOutTime", DbType="DateTime2 NOT NULL")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lastLoginOutTime", DbType="DateTime NOT NULL")]
 	public System.DateTime lastLoginOutTime
 	{
 		get
@@ -841,6 +841,10 @@ public partial class gameNews : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private double _latitude;
 	
+	private string _url;
+	
+	private string _gameType;
+	
     #region 可扩展性方法定义
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -867,6 +871,10 @@ public partial class gameNews : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnlongitudeChanged();
     partial void OnlatitudeChanging(double value);
     partial void OnlatitudeChanged();
+    partial void OnurlChanging(string value);
+    partial void OnurlChanged();
+    partial void OngameTypeChanging(string value);
+    partial void OngameTypeChanged();
     #endregion
 	
 	public gameNews()
@@ -1090,6 +1098,46 @@ public partial class gameNews : INotifyPropertyChanging, INotifyPropertyChanged
 				this._latitude = value;
 				this.SendPropertyChanged("latitude");
 				this.OnlatitudeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_url", DbType="NVarChar(100)")]
+	public string url
+	{
+		get
+		{
+			return this._url;
+		}
+		set
+		{
+			if ((this._url != value))
+			{
+				this.OnurlChanging(value);
+				this.SendPropertyChanging();
+				this._url = value;
+				this.SendPropertyChanged("url");
+				this.OnurlChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gameType", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string gameType
+	{
+		get
+		{
+			return this._gameType;
+		}
+		set
+		{
+			if ((this._gameType != value))
+			{
+				this.OngameTypeChanging(value);
+				this.SendPropertyChanging();
+				this._gameType = value;
+				this.SendPropertyChanged("gameType");
+				this.OngameTypeChanged();
 			}
 		}
 	}
