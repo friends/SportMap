@@ -2,6 +2,7 @@
 
 <%@ Register Assembly="FredCK.FCKeditorV2" Namespace="FredCK.FCKeditorV2" TagPrefix="FCKeditorV2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <title>添加新闻</title>
 <link rel="stylesheet" href="../Styles/thickbox.css" type="text/css" media="screen" />
 <style type="text/css">
 /*tag choose*/
@@ -9,9 +10,9 @@
 
 </style>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<h2>xxj</h2>
-<%="xxj"%>
+<h2>添加新闻</h2>
     <p>
         <label class="label" for="<%="xxj" %>">标题:</label>
         <asp:TextBox ID="txtTitle"   Width="95%" runat="server" CssClass="text"></asp:TextBox>           

@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <script type="text/javascript">
-    var GB_ROOT_DIR = "../Scripts/";
+    var GB_ROOT_DIR = "Scripts/";
     </script>
     <title>Sport Map</title>
     <link href="Styles/main.css" rel="stylesheet" type="text/css" />
@@ -24,7 +24,7 @@
         <div id = "header">
         <div id = "logo">
             <h1>
-                <a href="#">Sport Map</a>
+                <a href="Default.aspx">Sport Map</a>
             </h1>
         </div>
         <div id = "menu">
@@ -57,7 +57,7 @@
       </div>      
         <div id = "footer">
         <div id="publish">
-                <a href="UserNewsCommit.aspx" title="news commit" rel="gb_page_center[800, 480]">发表</a>
+                <a href="UI/UserNewsCommit.aspx" title="news commit" rel="gb_page_center[800, 480]">发表</a>
         </div>
     </div>
     

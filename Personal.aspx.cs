@@ -40,7 +40,7 @@ public partial class UI_Personal : System.Web.UI.Page
                 GP.Latitude = (double)cCommon.RandomNumber(23, 40);
                 GP.Longitude = (double)cCommon.RandomNumber(100, 113);
                 //Specify bubble text here. You can use standard HTML tags here.
-                GP.InfoHTML = "<html><head></head><body><div><br/><a href=\"#\">最新状态</a><br/><br/><a href=\"#\">给他/她留言</a></div></body></html>";
+                GP.InfoHTML = "<html><head></head><body><div><br/><span>我是 第" + i.ToString() + "号</span><br/><br/><a href=\"#\">最新状态</a><br/><br/><a href=\"#\">给他/她留言</a><br/><br/><a href=\"#\">加为好友</a></div></body></html>";
 
                 //Specify random icon image..
                 GP.IconImage = "Upload/userheader/" + i + ".gif";
@@ -50,7 +50,7 @@ public partial class UI_Personal : System.Web.UI.Page
             GP3.ID = "Halifax";
             GP3.Latitude = 23.1;
             GP3.Longitude = 113.18;
-            GP3.InfoHTML = "<html><head></head><body><div><br/><a href=\"#\">最新状态</a><br/><br/><a href=\"#\">给他/她留言</a></div></body></html>";
+            GP3.InfoHTML = "<html><head></head><body><div><br/><span>我是 xxj</span><br/><br/><a href=\"UI/UserInfoEdit.aspx\">修改用户信息</a><br/><br/><a href=\"#\">更新状态</a><br/><br/><a href=\"UI/UserNewsCommit.aspx\" title=\"news commit\" rel=\"gb_page_center[800, 480]\">发表新闻</a></div></body></html>";
             GP3.IconImage = "Upload/userheader/20101129032855.jpg";
             GP3.IconImageWidth = 40;
             GP3.IconImageHeight = 40;

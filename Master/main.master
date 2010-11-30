@@ -10,6 +10,11 @@
     <link href="../Styles/main.css" rel="stylesheet" type="text/css" />
     <asp:contentplaceholder id="headContentPlaceHolder" runat="server">
     </asp:contentplaceholder>
+    <script type="text/javascript">
+        function remind() {
+            alert("本功能尚未实现！");
+        }
+    </script>
 </head>
 <body>
     <form id = "form1" runat = "server"> 
@@ -75,9 +80,9 @@
             <li><a>Funciton</a>
             <div>
                 <ul>
-                    <li><asp:LinkButton ID="betLinkBtn" runat="server" onclick="betLinkBtn_Click">bet</asp:LinkButton></li>
-                    <li><asp:LinkButton ID="salesLinkBtn" runat="server" onclick="salesLinkBtn_Click">sales</asp:LinkButton></li>                   
-                    <li><asp:LinkButton ID="othersLinkBtn" runat="server" onclick="othersLinkBtn_Click">others</asp:LinkButton></li>
+                    <li><asp:LinkButton ID="betLinkBtn" runat="server" OnClientClick="remind();">bet</asp:LinkButton></li>
+                    <li><asp:LinkButton ID="salesLinkBtn" runat="server" OnClientClick="remind();">sales</asp:LinkButton></li>                   
+                    <li><asp:LinkButton ID="othersLinkBtn" runat="server" OnClientClick="remind();">others</asp:LinkButton></li>
                 </ul>
                 </div>
             </li>        
