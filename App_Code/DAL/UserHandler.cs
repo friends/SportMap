@@ -103,5 +103,11 @@ namespace SportMap.DAL
             currentUser.friend.Add(newRecord);
             return ErrorMessage.OK;
         }
+        //使用AddFriend的例子：
+        //string userAid,userBid;
+        //UserHandler uh=new UserHandler();
+        //uh.SetUserById(userAid);
+        //uh.AddFriend(userBid);
+        //返回ErrorMessage,其中，NOT_EXIST标示没有找到userBid对应的user，ALERADY_EXIST表示已经由此关系，ERROR表示加出现其他异常，OK表示操作成功。
     }
 }

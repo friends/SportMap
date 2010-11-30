@@ -65,7 +65,7 @@ public partial class UI_Register : System.Web.UI.Page
             return false;
         }
         decimal phone;
-        if (!decimal.TryParse(paras[9], out phone) && paras[6] != null)
+        if (!decimal.TryParse(paras[9], out phone) && paras[9] != null)
         {
             lblMessage.Text = "电话号码错误！";
             return false;
@@ -89,12 +89,15 @@ public partial class UI_Register : System.Web.UI.Page
             return false;
         }
 
+        string path=(string)Session["header"];
+        Session["header"] = null;
+
         UserHandler uh=new UserHandler();
         user newUser = new user {userId=paras[0],userName=paras[1],userPwd=paras[2],pwdProtectQ=paras[4],
         pwdProtectA=paras[5],userConnectqq=qq,userConnectMsn=paras[7],userConnectEmail=paras[8],
         userConnectPhone=phone,userLatitude=latitude,userLongitude=longitude,userSex=sex,
         userBirthday=birthday,userPrefer=paras[13],
-        userType=1,lastLoginOutTime=DateTime.MinValue,userLoginTimes=0};
+        userType=1,lastLoginOutTime=DateTime.MinValue,userLoginTimes=0,imgPath=path};
         if (uh.Insert(newUser) == ErrorMessage.ALREADY_EXIST)
         {
             lblMessage.Text = "该ID已被注册！";

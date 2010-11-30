@@ -23,6 +23,7 @@ public partial class UI_UploadPhoto : System.Web.UI.Page
         }
     }
     private const string savepath = "~/Upload/userheader" + "/";
+    private const string relativePath = "../Upload/userheader/";
 
     protected void btnUpload_Click(object sender, EventArgs e)
     {
@@ -58,6 +59,7 @@ public partial class UI_UploadPhoto : System.Web.UI.Page
                                 dropHeight, cutLeft, cutTop, imageWidth, imageHeight);
 
         this.imgphoto.ImageUrl = savepath + filename;
+        Session["header"] = relativePath + filename;
         Page.ClientScript.RegisterStartupScript(typeof(UI_UploadPhoto), "step3", "<script type='text/javascript'>Step3();</script>");
 
     }
