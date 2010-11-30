@@ -354,7 +354,7 @@ public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userBirthday", DbType="Date")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userBirthday", DbType="DateTime2")]
 	public System.Nullable<System.DateTime> userBirthday
 	{
 		get
@@ -514,7 +514,7 @@ public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lastLoginOutTime", DbType="DateTime NOT NULL")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lastLoginOutTime", DbType="DateTime2 NOT NULL")]
 	public System.DateTime lastLoginOutTime
 	{
 		get

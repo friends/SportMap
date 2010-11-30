@@ -20,10 +20,7 @@ namespace SportMap.DAL
             }
             set
             {
-                if (value == null)//允许给currentNews赋值null
-                    currentNews = null;
-                else
-                    SetCurrentNewsById(value.gameNewsId);//交给SetCurrentNewsById处理
+                currentNews = value;
             }
         }
         //三个构造方法

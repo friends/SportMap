@@ -12,20 +12,18 @@ namespace SportMap.DAL
     public class UserHandler : IHandler
     {
         private DataClassesDataContext db;
-        public user currentUser
-        {
-            get
-            {
-                return currentUser;
-            }
-            set
-            {
-                if (value == null)//允许给currentUser赋值null
-                    currentUser = null;
-                else
-                    SetCurrentUserById(value.userId);//交给SetCurrentUserById处理
-            }
-        }
+        public user currentUser;
+        //public user currentUser
+        //{
+        //    get
+        //    {
+        //        return currentUser;
+        //    }
+        //    set
+        //    {
+        //        currentUser=value;
+        //    }
+        //}
         public UserHandler()
         {
             db = new DataClassesDataContext();
@@ -109,5 +107,6 @@ namespace SportMap.DAL
         //uh.SetUserById(userAid);
         //uh.AddFriend(userBid);
         //返回ErrorMessage,其中，NOT_EXIST标示没有找到userBid对应的user，ALERADY_EXIST表示已经由此关系，ERROR表示加出现其他异常，OK表示操作成功。
+        //uh.Submit();
     }
 }
