@@ -94,7 +94,7 @@ namespace SportMap.DAL
             UserHandler BHandler = new UserHandler();
             if (BHandler.SetCurrentUserById(userBid) == ErrorMessage.NOT_EXIST)
                 return ErrorMessage.NOT_EXIST;
-            if (currentUser.friend.Any() || currentUser.friend1.Any())
+            if (currentUser.friend.Any(ff => ff.userB == userBid) || currentUser.friend1.Any(ff => ff.userA == userBid))
                 return ErrorMessage.ALREADY_EXIST;
 
             friend newRecord=new friend { userA=currentUser.userId,userB=userBid};
