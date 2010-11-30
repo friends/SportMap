@@ -86,5 +86,28 @@ namespace SportMap.DAL
                 return ErrorMessage.OK;
             }
         }
+
+        public ErrorMessage AddFriend(string userBid)
+        {
+            if (currentUser == null)
+                return ErrorMessage.ERROR;
+            if (userBid == currentUser.userId)
+                return ErrorMessage.ERROR;
+            UserHandler BHandler = new UserHandler();
+            if (BHandler.SetCurrentUserById(userBid) == ErrorMessage.NOT_EXIST)
+                return ErrorMessage.NOT_EXIST;
+            if (currentUser.friend.Any() || currentUser.friend1.Any())
+                return ErrorMessage.ALREADY_EXIST;
+
+            friend newRecord=new friend { userA=currentUser.userId,userB=userBid};
+            currentUser.friend.Add(newRecord);
+            return ErrorMessage.OK;
+        }
+        //使用AddFriend的例子：
+        //string userAid,userBid;
+        //UserHandler uh=new UserHandler();
+        //uh.SetUserById(userAid);
+        //uh.AddFriend(userBid);
+        //返回ErrorMessage,其中，NOT_EXIST标示没有找到userBid对应的user，ALERADY_EXIST表示已经由此关系，ERROR表示加出现其他异常，OK表示操作成功。
     }
 }

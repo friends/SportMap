@@ -25,6 +25,19 @@ public partial class main : System.Web.UI.MasterPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Page.User.Identity.IsAuthenticated)
+        {
+            logLink.Text = "logout";
+            logLink.NavigateUrl = "~/UI/Logout.aspx";
+            signLink.Visible = false;
+        }
+        else
+        {
+            logLink.Text = "login";
+            logLink.NavigateUrl = "~/UI/Login.aspx";
+            signLink.Visible = true;
+        }
+
         if (!IsPostBack)
         {
             googleMapForASPNet.GoogleMapObject.APIKey = "ABQIAAAAAVbsFH4Db7tiEfmAwunZsBRT3SAn1XS5DIMMB6pgAyTR7OGC3RTvGgw2q-kk9nsNxyb5VOajUvrf6g";          //定义你的Google Maps API key

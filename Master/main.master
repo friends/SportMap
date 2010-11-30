@@ -27,8 +27,10 @@
         </div>
         <div id = "menu">
             <ul>
-                <li><asp:HyperLink Target="_blank" NavigateUrl="~/UI/Login.aspx" runat="server">Login</asp:HyperLink></li>
-                <li><asp:HyperLInk Target="_blank" NavigateUrl="~/UI/Register.aspx" runat="server">SignUp</asp:HyperLInk></li>
+                <li><asp:HyperLink Target="_blank" NavigateUrl="~/UI/Login.aspx" runat="server" 
+                        ID="logLink">Login</asp:HyperLink></li>
+                <li><asp:HyperLInk Target="_blank" NavigateUrl="~/UI/Register.aspx" runat="server" 
+                        ID="signLink">SignUp</asp:HyperLInk></li>
                 <li class="right"><a>Help</a></li>
             </ul>
         </div>      

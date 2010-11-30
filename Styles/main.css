@@ -42,6 +42,8 @@ ul li
     margin: 80px auto;
     clear:both;
     position:relative;
+	top: 0px;
+	left: 0px;
 }
 #header
 {
