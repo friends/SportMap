@@ -29,19 +29,19 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 	
   #region 可扩展性方法定义
   partial void OnCreated();
-  partial void Insertuser(user instance);
-  partial void Updateuser(user instance);
-  partial void Deleteuser(user instance);
   partial void Insertfriend(friend instance);
   partial void Updatefriend(friend instance);
   partial void Deletefriend(friend instance);
+  partial void Insertuser(user instance);
+  partial void Updateuser(user instance);
+  partial void Deleteuser(user instance);
   partial void InsertgameNews(gameNews instance);
   partial void UpdategameNews(gameNews instance);
   partial void DeletegameNews(gameNews instance);
   #endregion
 	
 	public DataClassesDataContext() : 
-			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SportMapDBConnectionString"].ConnectionString, mappingSource)
+			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SportMapDBConnectionString1"].ConnectionString, mappingSource)
 	{
 		OnCreated();
 	}
@@ -70,14 +70,6 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		OnCreated();
 	}
 	
-	public System.Data.Linq.Table<user> user
-	{
-		get
-		{
-			return this.GetTable<user>();
-		}
-	}
-	
 	public System.Data.Linq.Table<friend> friend
 	{
 		get
@@ -86,11 +78,187 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
+	public System.Data.Linq.Table<user> user
+	{
+		get
+		{
+			return this.GetTable<user>();
+		}
+	}
+	
 	public System.Data.Linq.Table<gameNews> gameNews
 	{
 		get
 		{
 			return this.GetTable<gameNews>();
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.friend")]
+public partial class friend : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private string _userA;
+	
+	private string _userB;
+	
+	private EntityRef<user> _user;
+	
+	private EntityRef<user> _user1;
+	
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnuserAChanging(string value);
+    partial void OnuserAChanged();
+    partial void OnuserBChanging(string value);
+    partial void OnuserBChanged();
+    #endregion
+	
+	public friend()
+	{
+		this._user = default(EntityRef<user>);
+		this._user1 = default(EntityRef<user>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userA", DbType="VarChar(16) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+	public string userA
+	{
+		get
+		{
+			return this._userA;
+		}
+		set
+		{
+			if ((this._userA != value))
+			{
+				if (this._user.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnuserAChanging(value);
+				this.SendPropertyChanging();
+				this._userA = value;
+				this.SendPropertyChanged("userA");
+				this.OnuserAChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userB", DbType="VarChar(16) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+	public string userB
+	{
+		get
+		{
+			return this._userB;
+		}
+		set
+		{
+			if ((this._userB != value))
+			{
+				if (this._user1.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnuserBChanging(value);
+				this.SendPropertyChanging();
+				this._userB = value;
+				this.SendPropertyChanged("userB");
+				this.OnuserBChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="user_friend", Storage="_user", ThisKey="userA", OtherKey="userId", IsForeignKey=true)]
+	public user user
+	{
+		get
+		{
+			return this._user.Entity;
+		}
+		set
+		{
+			user previousValue = this._user.Entity;
+			if (((previousValue != value) 
+						|| (this._user.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._user.Entity = null;
+					previousValue.friend.Remove(this);
+				}
+				this._user.Entity = value;
+				if ((value != null))
+				{
+					value.friend.Add(this);
+					this._userA = value.userId;
+				}
+				else
+				{
+					this._userA = default(string);
+				}
+				this.SendPropertyChanged("user");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="user_friend1", Storage="_user1", ThisKey="userB", OtherKey="userId", IsForeignKey=true)]
+	public user user1
+	{
+		get
+		{
+			return this._user1.Entity;
+		}
+		set
+		{
+			user previousValue = this._user1.Entity;
+			if (((previousValue != value) 
+						|| (this._user1.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._user1.Entity = null;
+					previousValue.friend1.Remove(this);
+				}
+				this._user1.Entity = value;
+				if ((value != null))
+				{
+					value.friend1.Add(this);
+					this._userB = value.userId;
+				}
+				else
+				{
+					this._userB = default(string);
+				}
+				this.SendPropertyChanged("user1");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
@@ -642,174 +810,6 @@ public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		this.SendPropertyChanging();
 		entity.user1 = null;
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.friend")]
-public partial class friend : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private string _userA;
-	
-	private string _userB;
-	
-	private EntityRef<user> _user;
-	
-	private EntityRef<user> _user1;
-	
-    #region 可扩展性方法定义
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnuserAChanging(string value);
-    partial void OnuserAChanged();
-    partial void OnuserBChanging(string value);
-    partial void OnuserBChanged();
-    #endregion
-	
-	public friend()
-	{
-		this._user = default(EntityRef<user>);
-		this._user1 = default(EntityRef<user>);
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userA", DbType="VarChar(16) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-	public string userA
-	{
-		get
-		{
-			return this._userA;
-		}
-		set
-		{
-			if ((this._userA != value))
-			{
-				if (this._user.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnuserAChanging(value);
-				this.SendPropertyChanging();
-				this._userA = value;
-				this.SendPropertyChanged("userA");
-				this.OnuserAChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userB", DbType="VarChar(16) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-	public string userB
-	{
-		get
-		{
-			return this._userB;
-		}
-		set
-		{
-			if ((this._userB != value))
-			{
-				if (this._user1.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnuserBChanging(value);
-				this.SendPropertyChanging();
-				this._userB = value;
-				this.SendPropertyChanged("userB");
-				this.OnuserBChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="user_friend", Storage="_user", ThisKey="userA", OtherKey="userId", IsForeignKey=true)]
-	public user user
-	{
-		get
-		{
-			return this._user.Entity;
-		}
-		set
-		{
-			user previousValue = this._user.Entity;
-			if (((previousValue != value) 
-						|| (this._user.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._user.Entity = null;
-					previousValue.friend.Remove(this);
-				}
-				this._user.Entity = value;
-				if ((value != null))
-				{
-					value.friend.Add(this);
-					this._userA = value.userId;
-				}
-				else
-				{
-					this._userA = default(string);
-				}
-				this.SendPropertyChanged("user");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="user_friend1", Storage="_user1", ThisKey="userB", OtherKey="userId", IsForeignKey=true)]
-	public user user1
-	{
-		get
-		{
-			return this._user1.Entity;
-		}
-		set
-		{
-			user previousValue = this._user1.Entity;
-			if (((previousValue != value) 
-						|| (this._user1.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._user1.Entity = null;
-					previousValue.friend1.Remove(this);
-				}
-				this._user1.Entity = value;
-				if ((value != null))
-				{
-					value.friend1.Add(this);
-					this._userB = value.userId;
-				}
-				else
-				{
-					this._userB = default(string);
-				}
-				this.SendPropertyChanged("user1");
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
 	}
 }
 

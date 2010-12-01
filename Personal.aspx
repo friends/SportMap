@@ -30,7 +30,7 @@
         <div id = "menu">
             <ul>
                 <li><asp:HyperLink ID="logLink" Target="_blank" NavigateUrl="~/UI/Logout.aspx" runat="server">Logout</asp:HyperLink></li>
-                <br/><br/><a href="UI/UserNewsCommit.aspx" title="news commit" rel="gb_page_center[800, 480]">publish</a>
+                 <li><a href="UI/UserNewsCommit.aspx" title="news commit" rel="gb_page_center[800, 480]">publish</a></li>
                 <li class="right"><a>Help</a></li>
             </ul>
         </div>      

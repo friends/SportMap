@@ -76,7 +76,7 @@ public partial class UI_Personal : System.Web.UI.Page
             GooglePoint GP3 = new GooglePoint();
 
             string id = (string)Session["userId"];
-            uh.SetCurrentUserById("xxj");
+            uh.SetCurrentUserById(id);
 
             GP3.ID = uh.currentUser.userId;
             GP3.Latitude = uh.currentUser.userLatitude;

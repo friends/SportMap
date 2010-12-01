@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SportMapDB" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=FIREFLY-PC;Initial Catalog=SportMapDB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SportMapDBConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=xxj-PC;Initial Catalog=SportMapDB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SportMapDBConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.friend" Member="friend">
+    <Type Name="friend">
+      <Column Name="userA" Type="System.String" DbType="VarChar(16) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="userB" Type="System.String" DbType="VarChar(16) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="user_friend" Member="user" ThisKey="userA" OtherKey="userId" Type="user" IsForeignKey="true" />
+      <Association Name="user_friend1" Member="user1" ThisKey="userB" OtherKey="userId" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.[user]" Member="user">
     <Type Name="user">
       <Column Name="userId" Type="System.String" DbType="VarChar(16) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -23,14 +31,6 @@
       <Column Name="userLongitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Association Name="user_friend" Member="friend" ThisKey="userId" OtherKey="userA" Type="friend" />
       <Association Name="user_friend1" Member="friend1" ThisKey="userId" OtherKey="userB" Type="friend" />
-    </Type>
-  </Table>
-  <Table Name="dbo.friend" Member="friend">
-    <Type Name="friend">
-      <Column Name="userA" Type="System.String" DbType="VarChar(16) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="userB" Type="System.String" DbType="VarChar(16) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="user_friend" Member="user" ThisKey="userA" OtherKey="userId" Type="user" IsForeignKey="true" />
-      <Association Name="user_friend1" Member="user1" ThisKey="userB" OtherKey="userId" Type="user" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.gameNews" Member="gameNews">
