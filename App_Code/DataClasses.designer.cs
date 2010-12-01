@@ -29,15 +29,15 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 	
   #region 可扩展性方法定义
   partial void OnCreated();
+  partial void Insertuser(user instance);
+  partial void Updateuser(user instance);
+  partial void Deleteuser(user instance);
   partial void Insertfriend(friend instance);
   partial void Updatefriend(friend instance);
   partial void Deletefriend(friend instance);
   partial void InsertgameNews(gameNews instance);
   partial void UpdategameNews(gameNews instance);
   partial void DeletegameNews(gameNews instance);
-  partial void Insertuser(user instance);
-  partial void Updateuser(user instance);
-  partial void Deleteuser(user instance);
   #endregion
 	
 	public DataClassesDataContext() : 
@@ -70,6 +70,14 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		OnCreated();
 	}
 	
+	public System.Data.Linq.Table<user> user
+	{
+		get
+		{
+			return this.GetTable<user>();
+		}
+	}
+	
 	public System.Data.Linq.Table<friend> friend
 	{
 		get
@@ -85,13 +93,555 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 			return this.GetTable<gameNews>();
 		}
 	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[user]")]
+public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
+{
 	
-	public System.Data.Linq.Table<user> user
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private string _userId;
+	
+	private string _imgPath;
+	
+	private string _userName;
+	
+	private string _userPwd;
+	
+	private decimal _userType;
+	
+	private string _pwdProtectA;
+	
+	private string _pwdProtectQ;
+	
+	private System.Nullable<bool> _userSex;
+	
+	private System.Nullable<System.DateTime> _userBirthday;
+	
+	private string _userConnectMsn;
+	
+	private System.Nullable<decimal> _userConnectqq;
+	
+	private string _userPrefer;
+	
+	private int _userLoginTimes;
+	
+	private System.Nullable<decimal> _userConnectPhone;
+	
+	private string _userSign;
+	
+	private string _userConnectEmail;
+	
+	private System.DateTime _lastLoginOutTime;
+	
+	private double _userLatitude;
+	
+	private double _userLongitude;
+	
+	private EntitySet<friend> _friend;
+	
+	private EntitySet<friend> _friend1;
+	
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnuserIdChanging(string value);
+    partial void OnuserIdChanged();
+    partial void OnimgPathChanging(string value);
+    partial void OnimgPathChanged();
+    partial void OnuserNameChanging(string value);
+    partial void OnuserNameChanged();
+    partial void OnuserPwdChanging(string value);
+    partial void OnuserPwdChanged();
+    partial void OnuserTypeChanging(decimal value);
+    partial void OnuserTypeChanged();
+    partial void OnpwdProtectAChanging(string value);
+    partial void OnpwdProtectAChanged();
+    partial void OnpwdProtectQChanging(string value);
+    partial void OnpwdProtectQChanged();
+    partial void OnuserSexChanging(System.Nullable<bool> value);
+    partial void OnuserSexChanged();
+    partial void OnuserBirthdayChanging(System.Nullable<System.DateTime> value);
+    partial void OnuserBirthdayChanged();
+    partial void OnuserConnectMsnChanging(string value);
+    partial void OnuserConnectMsnChanged();
+    partial void OnuserConnectqqChanging(System.Nullable<decimal> value);
+    partial void OnuserConnectqqChanged();
+    partial void OnuserPreferChanging(string value);
+    partial void OnuserPreferChanged();
+    partial void OnuserLoginTimesChanging(int value);
+    partial void OnuserLoginTimesChanged();
+    partial void OnuserConnectPhoneChanging(System.Nullable<decimal> value);
+    partial void OnuserConnectPhoneChanged();
+    partial void OnuserSignChanging(string value);
+    partial void OnuserSignChanged();
+    partial void OnuserConnectEmailChanging(string value);
+    partial void OnuserConnectEmailChanged();
+    partial void OnlastLoginOutTimeChanging(System.DateTime value);
+    partial void OnlastLoginOutTimeChanged();
+    partial void OnuserLatitudeChanging(double value);
+    partial void OnuserLatitudeChanged();
+    partial void OnuserLongitudeChanging(double value);
+    partial void OnuserLongitudeChanged();
+    #endregion
+	
+	public user()
+	{
+		this._friend = new EntitySet<friend>(new Action<friend>(this.attach_friend), new Action<friend>(this.detach_friend));
+		this._friend1 = new EntitySet<friend>(new Action<friend>(this.attach_friend1), new Action<friend>(this.detach_friend1));
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userId", DbType="VarChar(16) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+	public string userId
 	{
 		get
 		{
-			return this.GetTable<user>();
+			return this._userId;
 		}
+		set
+		{
+			if ((this._userId != value))
+			{
+				this.OnuserIdChanging(value);
+				this.SendPropertyChanging();
+				this._userId = value;
+				this.SendPropertyChanged("userId");
+				this.OnuserIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imgPath", DbType="VarChar(MAX)")]
+	public string imgPath
+	{
+		get
+		{
+			return this._imgPath;
+		}
+		set
+		{
+			if ((this._imgPath != value))
+			{
+				this.OnimgPathChanging(value);
+				this.SendPropertyChanging();
+				this._imgPath = value;
+				this.SendPropertyChanged("imgPath");
+				this.OnimgPathChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userName", DbType="VarChar(16)")]
+	public string userName
+	{
+		get
+		{
+			return this._userName;
+		}
+		set
+		{
+			if ((this._userName != value))
+			{
+				this.OnuserNameChanging(value);
+				this.SendPropertyChanging();
+				this._userName = value;
+				this.SendPropertyChanged("userName");
+				this.OnuserNameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userPwd", DbType="VarChar(16) NOT NULL", CanBeNull=false)]
+	public string userPwd
+	{
+		get
+		{
+			return this._userPwd;
+		}
+		set
+		{
+			if ((this._userPwd != value))
+			{
+				this.OnuserPwdChanging(value);
+				this.SendPropertyChanging();
+				this._userPwd = value;
+				this.SendPropertyChanged("userPwd");
+				this.OnuserPwdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userType", DbType="Decimal(1,0) NOT NULL")]
+	public decimal userType
+	{
+		get
+		{
+			return this._userType;
+		}
+		set
+		{
+			if ((this._userType != value))
+			{
+				this.OnuserTypeChanging(value);
+				this.SendPropertyChanging();
+				this._userType = value;
+				this.SendPropertyChanged("userType");
+				this.OnuserTypeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pwdProtectA", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+	public string pwdProtectA
+	{
+		get
+		{
+			return this._pwdProtectA;
+		}
+		set
+		{
+			if ((this._pwdProtectA != value))
+			{
+				this.OnpwdProtectAChanging(value);
+				this.SendPropertyChanging();
+				this._pwdProtectA = value;
+				this.SendPropertyChanged("pwdProtectA");
+				this.OnpwdProtectAChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pwdProtectQ", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+	public string pwdProtectQ
+	{
+		get
+		{
+			return this._pwdProtectQ;
+		}
+		set
+		{
+			if ((this._pwdProtectQ != value))
+			{
+				this.OnpwdProtectQChanging(value);
+				this.SendPropertyChanging();
+				this._pwdProtectQ = value;
+				this.SendPropertyChanged("pwdProtectQ");
+				this.OnpwdProtectQChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userSex", DbType="Bit")]
+	public System.Nullable<bool> userSex
+	{
+		get
+		{
+			return this._userSex;
+		}
+		set
+		{
+			if ((this._userSex != value))
+			{
+				this.OnuserSexChanging(value);
+				this.SendPropertyChanging();
+				this._userSex = value;
+				this.SendPropertyChanged("userSex");
+				this.OnuserSexChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userBirthday", DbType="DateTime2")]
+	public System.Nullable<System.DateTime> userBirthday
+	{
+		get
+		{
+			return this._userBirthday;
+		}
+		set
+		{
+			if ((this._userBirthday != value))
+			{
+				this.OnuserBirthdayChanging(value);
+				this.SendPropertyChanging();
+				this._userBirthday = value;
+				this.SendPropertyChanged("userBirthday");
+				this.OnuserBirthdayChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userConnectMsn", DbType="VarChar(255)")]
+	public string userConnectMsn
+	{
+		get
+		{
+			return this._userConnectMsn;
+		}
+		set
+		{
+			if ((this._userConnectMsn != value))
+			{
+				this.OnuserConnectMsnChanging(value);
+				this.SendPropertyChanging();
+				this._userConnectMsn = value;
+				this.SendPropertyChanged("userConnectMsn");
+				this.OnuserConnectMsnChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userConnectqq", DbType="Decimal(12,0)")]
+	public System.Nullable<decimal> userConnectqq
+	{
+		get
+		{
+			return this._userConnectqq;
+		}
+		set
+		{
+			if ((this._userConnectqq != value))
+			{
+				this.OnuserConnectqqChanging(value);
+				this.SendPropertyChanging();
+				this._userConnectqq = value;
+				this.SendPropertyChanged("userConnectqq");
+				this.OnuserConnectqqChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userPrefer", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+	public string userPrefer
+	{
+		get
+		{
+			return this._userPrefer;
+		}
+		set
+		{
+			if ((this._userPrefer != value))
+			{
+				this.OnuserPreferChanging(value);
+				this.SendPropertyChanging();
+				this._userPrefer = value;
+				this.SendPropertyChanged("userPrefer");
+				this.OnuserPreferChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userLoginTimes", DbType="Int NOT NULL")]
+	public int userLoginTimes
+	{
+		get
+		{
+			return this._userLoginTimes;
+		}
+		set
+		{
+			if ((this._userLoginTimes != value))
+			{
+				this.OnuserLoginTimesChanging(value);
+				this.SendPropertyChanging();
+				this._userLoginTimes = value;
+				this.SendPropertyChanged("userLoginTimes");
+				this.OnuserLoginTimesChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userConnectPhone", DbType="Decimal(11,0)")]
+	public System.Nullable<decimal> userConnectPhone
+	{
+		get
+		{
+			return this._userConnectPhone;
+		}
+		set
+		{
+			if ((this._userConnectPhone != value))
+			{
+				this.OnuserConnectPhoneChanging(value);
+				this.SendPropertyChanging();
+				this._userConnectPhone = value;
+				this.SendPropertyChanged("userConnectPhone");
+				this.OnuserConnectPhoneChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userSign", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+	public string userSign
+	{
+		get
+		{
+			return this._userSign;
+		}
+		set
+		{
+			if ((this._userSign != value))
+			{
+				this.OnuserSignChanging(value);
+				this.SendPropertyChanging();
+				this._userSign = value;
+				this.SendPropertyChanged("userSign");
+				this.OnuserSignChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userConnectEmail", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+	public string userConnectEmail
+	{
+		get
+		{
+			return this._userConnectEmail;
+		}
+		set
+		{
+			if ((this._userConnectEmail != value))
+			{
+				this.OnuserConnectEmailChanging(value);
+				this.SendPropertyChanging();
+				this._userConnectEmail = value;
+				this.SendPropertyChanged("userConnectEmail");
+				this.OnuserConnectEmailChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lastLoginOutTime", DbType="DateTime2 NOT NULL")]
+	public System.DateTime lastLoginOutTime
+	{
+		get
+		{
+			return this._lastLoginOutTime;
+		}
+		set
+		{
+			if ((this._lastLoginOutTime != value))
+			{
+				this.OnlastLoginOutTimeChanging(value);
+				this.SendPropertyChanging();
+				this._lastLoginOutTime = value;
+				this.SendPropertyChanged("lastLoginOutTime");
+				this.OnlastLoginOutTimeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userLatitude", DbType="Float NOT NULL")]
+	public double userLatitude
+	{
+		get
+		{
+			return this._userLatitude;
+		}
+		set
+		{
+			if ((this._userLatitude != value))
+			{
+				this.OnuserLatitudeChanging(value);
+				this.SendPropertyChanging();
+				this._userLatitude = value;
+				this.SendPropertyChanged("userLatitude");
+				this.OnuserLatitudeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userLongitude", DbType="Float NOT NULL")]
+	public double userLongitude
+	{
+		get
+		{
+			return this._userLongitude;
+		}
+		set
+		{
+			if ((this._userLongitude != value))
+			{
+				this.OnuserLongitudeChanging(value);
+				this.SendPropertyChanging();
+				this._userLongitude = value;
+				this.SendPropertyChanged("userLongitude");
+				this.OnuserLongitudeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="user_friend", Storage="_friend", ThisKey="userId", OtherKey="userA")]
+	public EntitySet<friend> friend
+	{
+		get
+		{
+			return this._friend;
+		}
+		set
+		{
+			this._friend.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="user_friend1", Storage="_friend1", ThisKey="userId", OtherKey="userB")]
+	public EntitySet<friend> friend1
+	{
+		get
+		{
+			return this._friend1;
+		}
+		set
+		{
+			this._friend1.Assign(value);
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_friend(friend entity)
+	{
+		this.SendPropertyChanging();
+		entity.user = this;
+	}
+	
+	private void detach_friend(friend entity)
+	{
+		this.SendPropertyChanging();
+		entity.user = null;
+	}
+	
+	private void attach_friend1(friend entity)
+	{
+		this.SendPropertyChanging();
+		entity.user1 = this;
+	}
+	
+	private void detach_friend1(friend entity)
+	{
+		this.SendPropertyChanging();
+		entity.user1 = null;
 	}
 }
 
@@ -610,556 +1160,6 @@ public partial class gameNews : INotifyPropertyChanging, INotifyPropertyChanged
 		{
 			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[user]")]
-public partial class user : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private string _userId;
-	
-	private string _imgPath;
-	
-	private string _userName;
-	
-	private string _userPwd;
-	
-	private decimal _userType;
-	
-	private string _pwdProtectA;
-	
-	private string _pwdProtectQ;
-	
-	private System.Nullable<bool> _userSex;
-	
-	private System.Nullable<System.DateTime> _userBirthday;
-	
-	private string _userConnectMsn;
-	
-	private System.Nullable<decimal> _userConnectqq;
-	
-	private string _userPrefer;
-	
-	private int _userLoginTimes;
-	
-	private System.Nullable<decimal> _userConnectPhone;
-	
-	private string _userSign;
-	
-	private string _userConnectEmail;
-	
-	private System.DateTime _lastLoginOutTime;
-	
-	private double _userLatitude;
-	
-	private double _userLongitude;
-	
-	private EntitySet<friend> _friend;
-	
-	private EntitySet<friend> _friend1;
-	
-    #region 可扩展性方法定义
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnuserIdChanging(string value);
-    partial void OnuserIdChanged();
-    partial void OnimgPathChanging(string value);
-    partial void OnimgPathChanged();
-    partial void OnuserNameChanging(string value);
-    partial void OnuserNameChanged();
-    partial void OnuserPwdChanging(string value);
-    partial void OnuserPwdChanged();
-    partial void OnuserTypeChanging(decimal value);
-    partial void OnuserTypeChanged();
-    partial void OnpwdProtectAChanging(string value);
-    partial void OnpwdProtectAChanged();
-    partial void OnpwdProtectQChanging(string value);
-    partial void OnpwdProtectQChanged();
-    partial void OnuserSexChanging(System.Nullable<bool> value);
-    partial void OnuserSexChanged();
-    partial void OnuserBirthdayChanging(System.Nullable<System.DateTime> value);
-    partial void OnuserBirthdayChanged();
-    partial void OnuserConnectMsnChanging(string value);
-    partial void OnuserConnectMsnChanged();
-    partial void OnuserConnectqqChanging(System.Nullable<decimal> value);
-    partial void OnuserConnectqqChanged();
-    partial void OnuserPreferChanging(string value);
-    partial void OnuserPreferChanged();
-    partial void OnuserLoginTimesChanging(int value);
-    partial void OnuserLoginTimesChanged();
-    partial void OnuserConnectPhoneChanging(System.Nullable<decimal> value);
-    partial void OnuserConnectPhoneChanged();
-    partial void OnuserSignChanging(string value);
-    partial void OnuserSignChanged();
-    partial void OnuserConnectEmailChanging(string value);
-    partial void OnuserConnectEmailChanged();
-    partial void OnlastLoginOutTimeChanging(System.DateTime value);
-    partial void OnlastLoginOutTimeChanged();
-    partial void OnuserLatitudeChanging(double value);
-    partial void OnuserLatitudeChanged();
-    partial void OnuserLongitudeChanging(double value);
-    partial void OnuserLongitudeChanged();
-    #endregion
-	
-	public user()
-	{
-		this._friend = new EntitySet<friend>(new Action<friend>(this.attach_friend), new Action<friend>(this.detach_friend));
-		this._friend1 = new EntitySet<friend>(new Action<friend>(this.attach_friend1), new Action<friend>(this.detach_friend1));
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userId", DbType="VarChar(16) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-	public string userId
-	{
-		get
-		{
-			return this._userId;
-		}
-		set
-		{
-			if ((this._userId != value))
-			{
-				this.OnuserIdChanging(value);
-				this.SendPropertyChanging();
-				this._userId = value;
-				this.SendPropertyChanged("userId");
-				this.OnuserIdChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imgPath", DbType="VarChar(MAX)")]
-	public string imgPath
-	{
-		get
-		{
-			return this._imgPath;
-		}
-		set
-		{
-			if ((this._imgPath != value))
-			{
-				this.OnimgPathChanging(value);
-				this.SendPropertyChanging();
-				this._imgPath = value;
-				this.SendPropertyChanged("imgPath");
-				this.OnimgPathChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userName", DbType="VarChar(16)")]
-	public string userName
-	{
-		get
-		{
-			return this._userName;
-		}
-		set
-		{
-			if ((this._userName != value))
-			{
-				this.OnuserNameChanging(value);
-				this.SendPropertyChanging();
-				this._userName = value;
-				this.SendPropertyChanged("userName");
-				this.OnuserNameChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userPwd", DbType="VarChar(16) NOT NULL", CanBeNull=false)]
-	public string userPwd
-	{
-		get
-		{
-			return this._userPwd;
-		}
-		set
-		{
-			if ((this._userPwd != value))
-			{
-				this.OnuserPwdChanging(value);
-				this.SendPropertyChanging();
-				this._userPwd = value;
-				this.SendPropertyChanged("userPwd");
-				this.OnuserPwdChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userType", DbType="Decimal(1,0) NOT NULL")]
-	public decimal userType
-	{
-		get
-		{
-			return this._userType;
-		}
-		set
-		{
-			if ((this._userType != value))
-			{
-				this.OnuserTypeChanging(value);
-				this.SendPropertyChanging();
-				this._userType = value;
-				this.SendPropertyChanged("userType");
-				this.OnuserTypeChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pwdProtectA", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-	public string pwdProtectA
-	{
-		get
-		{
-			return this._pwdProtectA;
-		}
-		set
-		{
-			if ((this._pwdProtectA != value))
-			{
-				this.OnpwdProtectAChanging(value);
-				this.SendPropertyChanging();
-				this._pwdProtectA = value;
-				this.SendPropertyChanged("pwdProtectA");
-				this.OnpwdProtectAChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pwdProtectQ", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-	public string pwdProtectQ
-	{
-		get
-		{
-			return this._pwdProtectQ;
-		}
-		set
-		{
-			if ((this._pwdProtectQ != value))
-			{
-				this.OnpwdProtectQChanging(value);
-				this.SendPropertyChanging();
-				this._pwdProtectQ = value;
-				this.SendPropertyChanged("pwdProtectQ");
-				this.OnpwdProtectQChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userSex", DbType="Bit")]
-	public System.Nullable<bool> userSex
-	{
-		get
-		{
-			return this._userSex;
-		}
-		set
-		{
-			if ((this._userSex != value))
-			{
-				this.OnuserSexChanging(value);
-				this.SendPropertyChanging();
-				this._userSex = value;
-				this.SendPropertyChanged("userSex");
-				this.OnuserSexChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userBirthday", DbType="Date")]
-	public System.Nullable<System.DateTime> userBirthday
-	{
-		get
-		{
-			return this._userBirthday;
-		}
-		set
-		{
-			if ((this._userBirthday != value))
-			{
-				this.OnuserBirthdayChanging(value);
-				this.SendPropertyChanging();
-				this._userBirthday = value;
-				this.SendPropertyChanged("userBirthday");
-				this.OnuserBirthdayChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userConnectMsn", DbType="VarChar(255)")]
-	public string userConnectMsn
-	{
-		get
-		{
-			return this._userConnectMsn;
-		}
-		set
-		{
-			if ((this._userConnectMsn != value))
-			{
-				this.OnuserConnectMsnChanging(value);
-				this.SendPropertyChanging();
-				this._userConnectMsn = value;
-				this.SendPropertyChanged("userConnectMsn");
-				this.OnuserConnectMsnChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userConnectqq", DbType="Decimal(12,0)")]
-	public System.Nullable<decimal> userConnectqq
-	{
-		get
-		{
-			return this._userConnectqq;
-		}
-		set
-		{
-			if ((this._userConnectqq != value))
-			{
-				this.OnuserConnectqqChanging(value);
-				this.SendPropertyChanging();
-				this._userConnectqq = value;
-				this.SendPropertyChanged("userConnectqq");
-				this.OnuserConnectqqChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userPrefer", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-	public string userPrefer
-	{
-		get
-		{
-			return this._userPrefer;
-		}
-		set
-		{
-			if ((this._userPrefer != value))
-			{
-				this.OnuserPreferChanging(value);
-				this.SendPropertyChanging();
-				this._userPrefer = value;
-				this.SendPropertyChanged("userPrefer");
-				this.OnuserPreferChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userLoginTimes", DbType="Int NOT NULL")]
-	public int userLoginTimes
-	{
-		get
-		{
-			return this._userLoginTimes;
-		}
-		set
-		{
-			if ((this._userLoginTimes != value))
-			{
-				this.OnuserLoginTimesChanging(value);
-				this.SendPropertyChanging();
-				this._userLoginTimes = value;
-				this.SendPropertyChanged("userLoginTimes");
-				this.OnuserLoginTimesChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userConnectPhone", DbType="Decimal(11,0)")]
-	public System.Nullable<decimal> userConnectPhone
-	{
-		get
-		{
-			return this._userConnectPhone;
-		}
-		set
-		{
-			if ((this._userConnectPhone != value))
-			{
-				this.OnuserConnectPhoneChanging(value);
-				this.SendPropertyChanging();
-				this._userConnectPhone = value;
-				this.SendPropertyChanged("userConnectPhone");
-				this.OnuserConnectPhoneChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userSign", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-	public string userSign
-	{
-		get
-		{
-			return this._userSign;
-		}
-		set
-		{
-			if ((this._userSign != value))
-			{
-				this.OnuserSignChanging(value);
-				this.SendPropertyChanging();
-				this._userSign = value;
-				this.SendPropertyChanged("userSign");
-				this.OnuserSignChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userConnectEmail", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-	public string userConnectEmail
-	{
-		get
-		{
-			return this._userConnectEmail;
-		}
-		set
-		{
-			if ((this._userConnectEmail != value))
-			{
-				this.OnuserConnectEmailChanging(value);
-				this.SendPropertyChanging();
-				this._userConnectEmail = value;
-				this.SendPropertyChanged("userConnectEmail");
-				this.OnuserConnectEmailChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lastLoginOutTime", DbType="DateTime NOT NULL")]
-	public System.DateTime lastLoginOutTime
-	{
-		get
-		{
-			return this._lastLoginOutTime;
-		}
-		set
-		{
-			if ((this._lastLoginOutTime != value))
-			{
-				this.OnlastLoginOutTimeChanging(value);
-				this.SendPropertyChanging();
-				this._lastLoginOutTime = value;
-				this.SendPropertyChanged("lastLoginOutTime");
-				this.OnlastLoginOutTimeChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userLatitude", DbType="Float NOT NULL")]
-	public double userLatitude
-	{
-		get
-		{
-			return this._userLatitude;
-		}
-		set
-		{
-			if ((this._userLatitude != value))
-			{
-				this.OnuserLatitudeChanging(value);
-				this.SendPropertyChanging();
-				this._userLatitude = value;
-				this.SendPropertyChanged("userLatitude");
-				this.OnuserLatitudeChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userLongitude", DbType="Float NOT NULL")]
-	public double userLongitude
-	{
-		get
-		{
-			return this._userLongitude;
-		}
-		set
-		{
-			if ((this._userLongitude != value))
-			{
-				this.OnuserLongitudeChanging(value);
-				this.SendPropertyChanging();
-				this._userLongitude = value;
-				this.SendPropertyChanged("userLongitude");
-				this.OnuserLongitudeChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="user_friend", Storage="_friend", ThisKey="userId", OtherKey="userA")]
-	public EntitySet<friend> friend
-	{
-		get
-		{
-			return this._friend;
-		}
-		set
-		{
-			this._friend.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="user_friend1", Storage="_friend1", ThisKey="userId", OtherKey="userB")]
-	public EntitySet<friend> friend1
-	{
-		get
-		{
-			return this._friend1;
-		}
-		set
-		{
-			this._friend1.Assign(value);
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-	
-	private void attach_friend(friend entity)
-	{
-		this.SendPropertyChanging();
-		entity.user = this;
-	}
-	
-	private void detach_friend(friend entity)
-	{
-		this.SendPropertyChanging();
-		entity.user = null;
-	}
-	
-	private void attach_friend1(friend entity)
-	{
-		this.SendPropertyChanging();
-		entity.user1 = this;
-	}
-	
-	private void detach_friend1(friend entity)
-	{
-		this.SendPropertyChanging();
-		entity.user1 = null;
 	}
 }
 #pragma warning restore 1591
