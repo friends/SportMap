@@ -52,6 +52,11 @@ public partial class UI_Personal : System.Web.UI.Page
             for (int i = 0; i < 20 && i < userlist.Count; i++)
             {
                 user u = userlist.ElementAt(i);
+                if (u.userId == (string)Session["userId"])
+                {
+                    continue;
+                }
+
                 GooglePoint GP = new GooglePoint();
                 GP.ID = u.userId;
                 GP.Latitude = u.userLatitude;

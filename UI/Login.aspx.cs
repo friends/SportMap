@@ -36,12 +36,27 @@ public partial class UI_Login : System.Web.UI.Page
                     FormsAuthenticationConfiguration conf = new FormsAuthenticationConfiguration();
                     TimeSpan old = conf.Timeout;
                     conf.Timeout = System.TimeSpan.FromDays(30);
-                    Response.Redirect("../Personal.aspx");
+                    if (uh.currentUser.userType == 1)
+                    {
+                        Response.Redirect("../Personal.aspx");
+                    }
+                    else if (uh.currentUser.userType == 0)
+                    {
+                        Response.Redirect("NewsEdit.aspx");
+                    }
+
                     conf.Timeout = old;
                 }
                 else
                 {
-                    Response.Redirect("../Personal.aspx");
+                    if (uh.currentUser.userType == 1)
+                    {
+                        Response.Redirect("../Personal.aspx");
+                    }
+                    else if (uh.currentUser.userType == 0)
+                    {
+                        Response.Redirect("NewsEdit.aspx");
+                    }
                 }
             }
         }
