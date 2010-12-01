@@ -23,7 +23,7 @@ public partial class UI_UploadPhoto : System.Web.UI.Page
         }
     }
     private const string savepath = "~/Upload/userheader" + "/";
-    private const string relativePath = "../Upload/userheader/";
+    private const string relativePath = "Upload/userheader/";
 
     protected void btnUpload_Click(object sender, EventArgs e)
     {
