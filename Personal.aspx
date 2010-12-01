@@ -29,8 +29,8 @@
         </div>
         <div id = "menu">
             <ul>
-                <li><asp:HyperLink ID="logLink" Target="_blank" NavigateUrl="~/UI/Login.aspx" runat="server">Login</asp:HyperLink></li>
-                <li><asp:HyperLInk ID="signLink" Target="_blank" NavigateUrl="~/UI/Register.aspx" runat="server">SignUp</asp:HyperLInk></li>
+                <li><asp:HyperLink ID="logLink" Target="_blank" NavigateUrl="~/UI/Logout.aspx" runat="server">Logout</asp:HyperLink></li>
+                <br/><br/><a href="UI/UserNewsCommit.aspx" title="news commit" rel="gb_page_center[800, 480]">publish</a>
                 <li class="right"><a>Help</a></li>
             </ul>
         </div>      
@@ -59,10 +59,8 @@
         <div id="publish">
                 <a href="UI/UserNewsCommit.aspx" title="news commit" rel="gb_page_center[800, 480]">发表</a>
         </div>
+    </div>  
     </div>
-    
-    </div>
-
     </form>
 </body>
 </html>

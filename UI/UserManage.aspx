@@ -12,7 +12,7 @@
             <td>用户名</td>
             <td>操作</td>
         </tr>
-        <asp:Repeater ID="rptUser" runat="server">
+        <asp:Repeater ID="userlistRepeater" runat="server">
             <ItemTemplate>
                 <tr class="row">                 
                     <td>

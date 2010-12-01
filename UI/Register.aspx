@@ -53,7 +53,7 @@
         </p>
         <p>
             <label for="txtUserName" style="display:block; margin:3px 0;" class="small">用户名:</label>
-            <asp:TextBox ID="txtUserName"  runat="server" Width="200" CssClass="text"></asp:TextBox><b style="color:Red"> *</b>
+            <asp:TextBox ID="txtUserName"  runat="server" Width="200" CssClass="text"></asp:TextBox>
         </p>
          
         <p>
@@ -66,11 +66,11 @@
         </p>
         <p>
             <label for="txtQuestion" style="display:block; margin:3px 0;" class="small">密码问题:</label>
-            <asp:TextBox ID="txtQuestion"  runat="server" Width="200" CssClass="text"></asp:TextBox>
+            <asp:TextBox ID="txtQuestion"  runat="server" Width="200" CssClass="text"></asp:TextBox><b style="color:Red"> *</b>
         </p>
          <p>
             <label for="txtAnswer" style="display:block; margin:3px 0;" class="small">密码答案:</label>
-            <asp:TextBox ID="txtAnswer"  runat="server" Width="200" CssClass="text"></asp:TextBox>
+            <asp:TextBox ID="txtAnswer"  runat="server" Width="200" CssClass="text"></asp:TextBox><b style="color:Red"> *</b>
         </p>
         
         <p>
@@ -83,7 +83,7 @@
         </p>
         <p>
             <label for="txtEmail" style="display:block; margin:3px 0;" class="small">Email:</label>
-            <asp:TextBox ID="txtEmail"  runat="server" Width="200" CssClass="text"></asp:TextBox>
+            <asp:TextBox ID="txtEmail"  runat="server" Width="200" CssClass="text"></asp:TextBox><b style="color:Red"> *</b>
         </p>
         <p>
             <label for="txtPhone" style="display:block; margin:3px 0;" class="small">电话:</label>

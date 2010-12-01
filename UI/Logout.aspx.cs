@@ -12,6 +12,5 @@ public partial class UI_Logout : System.Web.UI.Page
     {
         if (User.Identity.IsAuthenticated)
             FormsAuthentication.SignOut();
-        Response.Write("您已经安全退出！");
     }
 }

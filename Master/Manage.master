@@ -18,7 +18,7 @@
     <form id="form1" runat="server">
     <div id="wrapper">
         <div id="header"> 
-            <div>欢迎 <strong><%="xxj" %></strong> (<%="xxj"%>) | <a href="./">管理中心</a> | <a href="../">返回首页</a> | <a href="../UI/Logout.aspx">退出</a> </div>
+            <div>欢迎 <strong>admin</strong> (admin) | <a href="./">管理中心</a> | <a href="../">返回首页</a> | <a href="../UI/Logout.aspx">退出</a> </div>
             <h2><a href="../Default.aspx" style="color:#000;font-family: 'Microsoft Yahei';  font-size:24px;  ">管理中心</a></h2>
         </div>
         

@@ -29,13 +29,15 @@ public partial class main : System.Web.UI.MasterPage
         {
             logLink.Text = "logout";
             logLink.NavigateUrl = "~/UI/Logout.aspx";
-            signLink.Visible = false;
+            signLink.NavigateUrl = "~/Personal.aspx";
+            signLink.Text = "personal";
         }
         else
         {
             logLink.Text = "login";
             logLink.NavigateUrl = "~/UI/Login.aspx";
-            signLink.Visible = true;
+            signLink.NavigateUrl = "~/UI/Register.aspx";
+            signLink.Text = "register";
         }
 
         if (!IsPostBack)

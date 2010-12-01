@@ -676,7 +676,9 @@ public class cCommon
     public static string GetLocalPath()
     {
         string[] s = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Split(new char[] { '/' });
-        string PageName = s[s.Length - 1];
+
+        // 可能有后带参数，所以要先去掉参数
+        string PageName = s[s.Length - 1].Split(new char[]{'?'})[0];
         s = System.Web.HttpContext.Current.Request.MapPath(PageName).Split(new char[] { '\\' });
         string path = s[0] + "\\";
         for (int i = 1; i < s.Length - 1; i++)

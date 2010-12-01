@@ -12,23 +12,8 @@ namespace SportMap.DAL
     {
         private DataClassesDataContext db;
 
-        public gameNews currentNews
-        {
-            get
-            {
-                return currentNews;
-            }
-            set
-            {
-                currentNews = value;
-            }
-        }
-        //三个构造方法
-        public NewsHandler(int gameNewsId)
-        {
-            db = new DataClassesDataContext();
-            SetCurrentNewsById(gameNewsId);
-        }
+        public gameNews currentNews { get;set; }
+
         public NewsHandler(gameNews gamenews)
         {
             db = new DataClassesDataContext();
@@ -56,6 +41,20 @@ namespace SportMap.DAL
             else
                 return ErrorMessage.ALREADY_EXIST;
         }
+
+        public ErrorMessage Insert()
+        {
+            if (currentNews == null)
+            {
+                return ErrorMessage.ERROR;
+            }
+            else
+            {
+                db.gameNews.InsertOnSubmit(currentNews);
+                Submit();
+                return ErrorMessage.OK;
+            }
+        }
         public ErrorMessage Delete()
         {
             if (currentNews == null)
@@ -80,7 +79,7 @@ namespace SportMap.DAL
         /// <summary>
         ///根据gameNewsId找到对应存在于表中的gameNews,存在则将其赋值给currentNews,若不存在返回ErrorMessage.NOT_EXIST,currentNews置为null
         /// </summary>
-        private ErrorMessage SetCurrentNewsById(int nid)
+        public ErrorMessage SetCurrentNewsById(int nid)
         {
             var queryNews = from news in db.gameNews
                              where news.gameNewsId== nid
@@ -96,6 +95,11 @@ namespace SportMap.DAL
                 return ErrorMessage.OK;
             }
 
+        }
+
+        public List<gameNews> getNewsList()
+        {
+            return db.gameNews.ToList();
         }
     }
 }

@@ -1,30 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SportMapDB" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=FIREFLY-PC;Initial Catalog=SportMapDB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SportMapDBConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.[user]" Member="user">
-    <Type Name="user">
-      <Column Name="userId" Type="System.String" DbType="VarChar(16) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="imgPath" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="userName" Type="System.String" DbType="VarChar(16)" CanBeNull="true" />
-      <Column Name="userPwd" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
-      <Column Name="userType" Type="System.Decimal" DbType="Decimal(1,0) NOT NULL" CanBeNull="false" />
-      <Column Name="pwdProtectA" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="pwdProtectQ" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="userSex" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="userBirthday" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
-      <Column Name="userConnectMsn" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="userConnectqq" Type="System.Decimal" DbType="Decimal(12,0)" CanBeNull="true" />
-      <Column Name="userPrefer" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="userLoginTimes" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="userConnectPhone" Type="System.Decimal" DbType="Decimal(11,0)" CanBeNull="true" />
-      <Column Name="userSign" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="userConnectEmail" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="lastLoginOutTime" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
-      <Column Name="userLatitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="userLongitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Association Name="user_friend" Member="friend" ThisKey="userId" OtherKey="userA" Type="friend" />
-      <Association Name="user_friend1" Member="friend1" ThisKey="userId" OtherKey="userB" Type="friend" />
-    </Type>
-  </Table>
+  <Connection Mode="WebSettings" ConnectionString="Data Source=xxj-PC;Initial Catalog=SportMapDB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SportMapDBConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.friend" Member="friend">
     <Type Name="friend">
       <Column Name="userA" Type="System.String" DbType="VarChar(16) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -48,6 +23,31 @@
       <Column Name="latitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="url" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="gameType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[user]" Member="user">
+    <Type Name="user">
+      <Column Name="userId" Type="System.String" DbType="VarChar(16) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="imgPath" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="userName" Type="System.String" DbType="VarChar(16)" CanBeNull="true" />
+      <Column Name="userPwd" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="userType" Type="System.Decimal" DbType="Decimal(1,0) NOT NULL" CanBeNull="false" />
+      <Column Name="pwdProtectA" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="pwdProtectQ" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="userSex" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="userBirthday" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="userConnectMsn" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="userConnectqq" Type="System.Decimal" DbType="Decimal(12,0)" CanBeNull="true" />
+      <Column Name="userPrefer" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="userLoginTimes" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="userConnectPhone" Type="System.Decimal" DbType="Decimal(11,0)" CanBeNull="true" />
+      <Column Name="userSign" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="userConnectEmail" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="lastLoginOutTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="userLatitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="userLongitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="user_friend" Member="friend" ThisKey="userId" OtherKey="userA" Type="friend" />
+      <Association Name="user_friend1" Member="friend1" ThisKey="userId" OtherKey="userB" Type="friend" />
     </Type>
   </Table>
 </Database>

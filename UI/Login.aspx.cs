@@ -30,16 +30,19 @@ public partial class UI_Login : System.Web.UI.Page
                 lblMessage.Text = "密码错误";
             else
             {
+                Session["userId"] = uh.currentUser.userId;
                 if (chkRemember.Checked)
                 {
                     FormsAuthenticationConfiguration conf = new FormsAuthenticationConfiguration();
                     TimeSpan old = conf.Timeout;
                     conf.Timeout = System.TimeSpan.FromDays(30);
-                    FormsAuthentication.RedirectFromLoginPage(txtUserName.Text, true);
+                    Response.Redirect("../Personal.aspx");
                     conf.Timeout = old;
                 }
                 else
-                    FormsAuthentication.RedirectFromLoginPage(txtUserName.Text, true);
+                {
+                    Response.Redirect("../Personal.aspx");
+                }
             }
         }
     }

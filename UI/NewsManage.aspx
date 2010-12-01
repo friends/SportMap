@@ -12,12 +12,12 @@
             <td style="width:60%;">标题</td>
             <td>操作</td>
         </tr>
-        <asp:Repeater ID="rptPost" runat="server">
+        <asp:Repeater ID="newsListRepeater" runat="server">
             <ItemTemplate>
                 <tr class="row">
                     <td><%# DataBinder.Eval(Container.DataItem, "gameNewsId")%></td>
                     <td><%# DataBinder.Eval(Container.DataItem, "gameNewsTitle")%></td>
-                    <td><a href="NewsManage.aspx?operate=delete&NewsId=<%# DataBinder.Eval(Container.DataItem, "gameNewsId")%>" onclick="return confirm('删除作者不会删除作者发表的文章和评论,确定要删除吗?');">删除</a></td>
+                    <td><a href="NewsManage.aspx?operate=delete&newsId=<%# DataBinder.Eval(Container.DataItem, "gameNewsId")%>" onclick="return confirm('确定要删除吗?');">删除</a></td>
                 </tr>
             </ItemTemplate>
         </asp:Repeater>

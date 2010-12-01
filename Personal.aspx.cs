@@ -5,23 +5,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using SportMap.DAL;
 
 public partial class UI_Personal : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (User.Identity.IsAuthenticated)
-        {
-            logLink.Text = "logout";
-            logLink.NavigateUrl = "~/UI/Logout.aspx";
-            signLink.Visible = false;
-        }
-        else
-        {
-            logLink.Text = "login";
-            logLink.NavigateUrl = "~/UI/Login.aspx";
-            signLink.Visible = true;
-        }
+        UserHandler uh = new UserHandler();
+        
         if (!IsPostBack)
         {
             googleMapForASPNet.GoogleMapObject.APIKey = "ABQIAAAAAVbsFH4Db7tiEfmAwunZsBRT3SAn1XS5DIMMB6pgAyTR7OGC3RTvGgw2q-kk9nsNxyb5VOajUvrf6g";          //定义你的Google Maps API key
@@ -36,36 +27,67 @@ public partial class UI_Personal : System.Web.UI.Page
             googleMapForASPNet.GoogleMapObject.ShowZoomControl = false;
 
             googleMapForASPNet.GoogleMapObject.CenterPoint = new GooglePoint("CenterPoint", 23.20, 113.18);     //定义地图中心位置
-
-           // GooglePoint googlePoint = new GooglePoint("../Upload/image/lindan.jpg", 23.1, 113.18, "../Upload/image/golf.png");
-            //StreamReader sr = new StreamReader(Server.MapPath("~/HTMLPage.htm"));
-            //googlePoint.InfoHTML = sr.ReadToEnd();
-            
-           // sr.Close();
-            //googleMapForASPNet.GoogleMapObject.Points.Add(googlePoint);
-            Random Rand = new Random();
+           
+            if (Request.QueryString["operator"] == "addfriend")
+            {
+                uh.SetCurrentUserById((string)Session["userId"]);
+                uh.AddFriend(Request.QueryString["fid"]);
+                Response.Write("<script>alert('添加好友成功!')</script>");
+            }
+            /*
+             * 随机产生用户信息
+             Random Rand = new Random();
             for (int i = 1; i <= 20; i++)
             {
-                //Add pushpins for map. 
                 GooglePoint GP = new GooglePoint();
                 GP.ID = i.ToString();
                 GP.Latitude = (double)cCommon.RandomNumber(23, 40);
                 GP.Longitude = (double)cCommon.RandomNumber(100, 113);
-                //Specify bubble text here. You can use standard HTML tags here.
                 GP.InfoHTML = "<html><head></head><body><div><br/><span>我是 第" + i.ToString() + "号</span><br/><br/><a href=\"#\">最新状态</a><br/><br/><a href=\"#\">给他/她留言</a><br/><br/><a href=\"#\">加为好友</a></div></body></html>";
-
-                //Specify random icon image..
                 GP.IconImage = "Upload/userheader/" + i + ".gif";
                 googleMapForASPNet.GoogleMapObject.Points.Add(GP);
             }
+            */
+            List<user> userlist = uh.getUserList();
+            for (int i = 0; i < 20 && i < userlist.Count; i++)
+            {
+                user u = userlist.ElementAt(i);
+                GooglePoint GP = new GooglePoint();
+                GP.ID = u.userId;
+                GP.Latitude = u.userLatitude;
+                GP.Longitude = u.userLongitude;
+                GP.InfoHTML = "<html><head></head><body><div><br/><span>我是 " + u.userName + "</span><br/><br/><a href=\"UI/Error.aspx?error=notImplemented\" target=\"_blank\">最新状态</a><br/><br/><a href=\"UI/Error.aspx?error=notImplemented\" target=\"_blank\">给他/她留言</a><br/><br/><a href=\"Personal.aspx?operator=addfriend&fid=" + u.userId + "\">加为好友</a></div></body></html>";
+                if (u.imgPath != null)
+                {
+                    GP.IconImage = u.imgPath;
+                }
+                else
+                {
+                    GP.IconImage = "Upload/userheader/" + (i + 1) + ".gif";
+                }
+                googleMapForASPNet.GoogleMapObject.Points.Add(GP);
+            }
+
             GooglePoint GP3 = new GooglePoint();
-            GP3.ID = "Halifax";
-            GP3.Latitude = 23.1;
-            GP3.Longitude = 113.18;
-            GP3.InfoHTML = "<html><head></head><body><div><br/><span>我是 xxj</span><br/><br/><a href=\"UI/UserInfoEdit.aspx\">修改用户信息</a><br/><br/><a href=\"#\">更新状态</a><br/><br/><a href=\"UI/UserNewsCommit.aspx\" title=\"news commit\" rel=\"gb_page_center[800, 480]\">发表新闻</a></div></body></html>";
-            GP3.IconImage = "Upload/userheader/20101129032855.jpg";
+
+            string id = (string)Session["userId"];
+            uh.SetCurrentUserById("xxj");
+
+            GP3.ID = uh.currentUser.userId;
+            GP3.Latitude = uh.currentUser.userLatitude;
+            GP3.Longitude = uh.currentUser.userLongitude;
+            GP3.InfoHTML = "<html><head></head><body><div><br/><span>我是 " + uh.currentUser.userId + "</span><br/><br/><a href=\"UI/UserInfoEdit.aspx?userId=" + uh.currentUser.userId + "\">修改用户信息</a><br/><br/><a href=\"UI/Error.aspx?error=notImplemented\" target=\"_blank\">更新状态</a></div></body></html>";
+            if (uh.currentUser.imgPath != null)
+            {
+                GP3.IconImage = uh.currentUser.imgPath;
+            }
+            else
+            {
+                GP3.IconImage = "Upload/userheader/20101129032855.jpg";
+            }
             GP3.IconImageWidth = 40;
             GP3.IconImageHeight = 40;
+
             googleMapForASPNet.GoogleMapObject.Points.Add(GP3);
         }
     }

@@ -108,5 +108,10 @@ namespace SportMap.DAL
         //uh.AddFriend(userBid);
         //返回ErrorMessage,其中，NOT_EXIST标示没有找到userBid对应的user，ALERADY_EXIST表示已经由此关系，ERROR表示加出现其他异常，OK表示操作成功。
         //uh.Submit();
+
+        public List<user> getUserList()
+        {
+            return db.user.ToList();
+        }
     }
 }
